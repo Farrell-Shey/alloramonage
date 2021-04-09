@@ -1,0 +1,12 @@
+{
+    "name": "decle/alloramonage",
+    "authors": [
+        {
+            "name": "Elliot",
+            "email": "elliot.decle@gmail.com"
+        }
+    ],
+    "require": {
+        "altorouter/altorouter": "^2.0"
+    }
+}
