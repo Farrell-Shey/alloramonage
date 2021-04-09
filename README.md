@@ -1,2 +1,3 @@
-# alloramonage
-projet pour canop
+# Alloramonage
+
+Projet pour CanoP
