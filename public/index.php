@@ -17,6 +17,7 @@ $router->map('GET', '/conseils', 'conseils', 'conseils');
 $router->map('GET', '/annuaire', 'annuaire', 'annuaire');
 $router->map('GET', '/avis', 'avis', 'avis');
 $router->map('GET', '/faq', 'faq', 'faq');
+$router->map('GET', '/connexion', 'connexion', 'connexion');
 $match = $router->match();
 
 /*
