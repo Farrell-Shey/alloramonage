@@ -3,6 +3,13 @@
 /* LOADING OBJECT */
 require '../vendor/autoload.php';
 
+/* REQUIRE MODELS AND CONFIG */
+$models = glob('../Allobject/models/*.php');
+foreach ($models as $file) {
+    require($file);   
+}
+require_once '../Allobject/conf/config.php';
+
 /* STARTING USER SESSION AND REFRESH USER CONNECTION*/
 session_start();
 
