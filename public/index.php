@@ -25,7 +25,7 @@ $router->map('GET', '/connexion', 'connexion', 'connexion');
 $router->map('GET', '/edit/[i:id]', 'edit', 'edit');
 $router->map('POST', '/edit/[i:id]', 'edited', 'edited');
 $router->map('GET', '/search', 'search', 'search');
-
+$router->map('GET', '/faq', 'faq', 'faq');
 $match = $router->match();
 
 /*
@@ -34,10 +34,11 @@ $match ['param'] -> request _GET or _POST
 
 if (is_array($match)) {
     // CONTROLLER
-
+    $params = $match['params'];
+    require "../Allobject/views/{$match['target']}.php";
 
 } else {
     // PAGE 404
-
+    require "../Allobject/views/404.php";
 }
 
