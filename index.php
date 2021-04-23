@@ -9,6 +9,8 @@ $router->map('GET', '/conseils', 'conseils', 'conseils');
 $router->map('GET', '/annuaire', 'annuaire', 'annuaire');
 $router->map('GET', '/prestations', 'prestations', 'prestations');
 $router->map('GET', '/espace_pro', 'espace_pro', 'espace_pro');
+$router->map('POST', '/login', 'login', 'login');
+$router->map('POST', '/logout', 'logout', 'logout');
 $match = $router->match();
 
 if (is_array($match)) {
