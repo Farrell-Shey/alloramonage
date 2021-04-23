@@ -1,7 +1,0 @@
-/vendor/
-/node_modules
-/composer.lock
-/package-lock.json
-public/assets/css
-public/assets/js
-Allobject/conf/config.php
