@@ -1,28 +1,22 @@
 <?php
 
 require $_SERVER['DOCUMENT_ROOT'] . "/src/config.php";
-session_start();
 
 if (isset($_POST['but_submit'])) {
 
-    $uname = mysqli_real_escape_string($con, $_POST['txt_uname']);
-    $password = mysqli_real_escape_string($con, $_POST['txt_pwd']);
+    $email = mysqli_real_escape_string($con, $_POST['email']);
+    $password = mysqli_real_escape_string($con, $_POST['password']);
 
-    if ($uname != "" && $password != "") {
-
-        $sql_query = "select count(*) as cntUser from user where name='" . $uname . "' and pwd='" . $password . "'";
+    if ($email != "" && $password != "") {
+        $sql_query = "select count(*) as nbUser from user where email='" . $email . "' and mdp='" . $password . "'";
         $result = mysqli_query($con, $sql_query);
         $row = mysqli_fetch_array($result);
-
-        $count = $row['cntUser'];
-
+        $count = $row['nbUser'];
         if ($count > 0) {
-            $_SESSION['uname'] = $uname;
+            $_SESSION['utilisateur'] = $email;
             header('Location: /espace_pro');
         } else {
             echo "Invalid username and password";
         }
     }
 }
-
-echo" test";

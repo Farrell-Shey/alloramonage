@@ -2,6 +2,8 @@
 
 require $_SERVER['DOCUMENT_ROOT'].'/functions/AltoRouter.php';
 
+session_start();
+
 $router = new AltoRouter();
 
 $router->map('GET', '/', 'home');
