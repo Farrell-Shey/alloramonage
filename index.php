@@ -6,18 +6,18 @@ session_start();
 
 $router = new AltoRouter();
 
-$router->map('GET', '/', 'home');
-$router->map('GET', '/conseils', 'conseils', 'conseils');
-$router->map('GET', '/annuaire', 'annuaire', 'annuaire');
-$router->map('GET', '/prestations', 'prestations', 'prestations');
-$router->map('GET', '/espace_pro', 'espace_pro', 'espace_pro');
-$router->map('POST', '/login', 'login', 'login');
-$router->map('POST', '/logout', 'logout', 'logout');
+$router->map('GET', '/', '/pages/home');
+$router->map('GET', '/conseils', '/pages/conseils', 'conseils');
+$router->map('GET', '/annuaire', '/pages/annuaire', 'annuaire');
+$router->map('GET', '/prestations', '/pages/prestations', 'prestations');
+$router->map('GET', '/espace_pro', '/pages/espace_pro', 'espace_pro');
+$router->map('POST', '/login', '/functions/login', 'login');
+$router->map('POST', '/logout', '/functions/logout', 'logout');
 $match = $router->match();
 
 if (is_array($match)) {
     $params = $match['params'];
-    require $_SERVER['DOCUMENT_ROOT']."/pages/{$match['target']}.php";
+    require $_SERVER['DOCUMENT_ROOT']."{$match['target']}.php";
 } else {
     require  $_SERVER['DOCUMENT_ROOT']."/pages/404.php";
 }
