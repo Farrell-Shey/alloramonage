@@ -4,8 +4,6 @@ $metatitle = "Espace Pro Allo Ramonage";
 
 $menu = require($_SERVER['DOCUMENT_ROOT'] . "/src/menu.php");
 
-
-
 if (isset($_SESSION['utilisateur'])) {
     echo '
     <form method="post" action="/logout">
@@ -58,6 +56,5 @@ if (isset($_SESSION['utilisateur'])) {
         <input type="submit" value="S\'inscrire" />
         
     </form>
-    <div id="result"> </div>
     ';
 }

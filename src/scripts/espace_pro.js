@@ -20,18 +20,13 @@ $(document).ready(function (e) {
     },
 
     success:function(response) {	
-
-      // clear span before error message
       $("#email_error").remove();
-
-      // adding span after email textbox with error message
       $("#email").after("<span id='email_error' class='text-danger'>"+response+"</span>");
     },
 
     error:function(e) {
       $("#result").html("Something went wrong");
     }
-
   });
 
 
