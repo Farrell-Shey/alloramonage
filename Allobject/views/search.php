@@ -1,0 +1,125 @@
+<?php
+/*
+ * table User
+ * $ramoneurs =
+ *    [
+ *        1 =>
+ *            [
+ *                'id' => '',                         - CLE PRIMAIRE -
+ *                'password' => '',
+ *                'societe' => '',
+ *                'thumbnail' => '',
+ *                'contact' => '',
+ *                'siren' => '',
+ *                'adresse' => '',
+ *                'code_postal' => '',
+ *                'ville' => '',
+ *                'desc' => '',
+ *                'certif' => bool true / false,
+ *                'costic' => bool true / false,
+ *                'pays' => 'france',
+ *                'tel' => '06________',
+ *                'email' => '_____@____.___',          - CLE UNIQUE -
+ *                'site_web' => '_____.___',
+ *                'statut' => '',                       EN ATTENTE / VALIDER / REFUSER
+ *                'commentaire_admin' => '',            COMMENTAIRE INTERNE ADMIN
+ *                'created_at' => '',
+ *                'updated_at' => '',
+ *            ],
+ *        ...
+ *    ];
+ */
+
+/**
+ * @param $certif correspond à $ramoneurs['certif']
+ * @return string|null
+ */
+function getCertif($certif)
+{
+    return ($certif === true) ?
+        '<div class="certif">
+            <svg width="86" height="85" viewBox="0 0 86 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="4.5" y="4.5" width="77" height="76" rx="38" stroke="#CA476C" stroke-width="9"/>
+                <rect x="13" y="13" width="60" height="59" rx="29.5" fill="#CA476C"/>
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M27 30.1999C27 28.4326 28.4326 27 30.1999 27H55.7988C57.5659 27 58.9985 28.4325 58.9986 30.1997L59 38.7353L57.2923 37.4523C55.6879 36.2469 53.695 35.533 51.5323 35.533C46.2306 35.533 41.9327 39.8308 41.9327 45.1325C41.9327 47.2953 42.6466 49.2882 43.8521 50.8926L44.0659 51.1773V58.9986H30.1999C28.4326 58.9986 27 57.566 27 55.7988V30.1999ZM44.0659 37.6662H33.3997V35.533H44.0659V37.6662ZM33.3997 44.0659H39.7994V41.9327H33.3997V44.0659Z"
+                      fill="white"/>
+                <path fill-rule="evenodd" clip-rule="evenodd"
+                      d="M51.5323 37.6662C47.4087 37.6662 44.0659 41.009 44.0659 45.1325C44.0659 47.1669 44.8796 49.0113 46.1992 50.3579V57.932C46.1992 58.336 46.4274 58.7053 46.7888 58.886C47.1501 59.0667 47.5826 59.0277 47.9058 58.7853L51.5323 56.0654L55.1588 58.7853C55.482 59.0277 55.9144 59.0667 56.2758 58.886C56.6371 58.7053 56.8654 58.336 56.8654 57.932V50.3579C58.185 49.0113 58.9986 47.1669 58.9986 45.1325C58.9986 41.009 55.6558 37.6662 51.5323 37.6662ZM48.3324 55.7988V51.8804C49.3022 52.3411 50.3871 52.5989 51.5323 52.5989C52.6774 52.5989 53.7623 52.3411 54.7321 51.8804V55.7988L52.1722 53.8788C51.793 53.5944 51.2715 53.5944 50.8923 53.8788L48.3324 55.7988Z"
+                      fill="white"/>
+            </svg>
+            <span>certificat délivré</span>
+        </div>'
+        :
+        null;
+}
+
+function getCostic($costic)
+{
+    return ($costic === true) ?
+        '<img src="*" alt="">'
+        :
+        null;
+}
+/*
+ * On va chercher tout les ramoneurs qui correspond à la recherche en question en passant les paramêtre de recherche contenu dans $param['url']
+ */
+$ramoneurs = getRamoneurs($param);
+
+?>
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+</head>
+<body>
+
+
+<?php
+/*
+ * Pour chaque ramoneur on fait un affichage de carte
+ */
+foreach ($ramoneurs as $ramoneur) : ?>
+
+    <section class="card-result card">
+        <h2 class="name"><?= $ramoneur['societe'] ?></h2>
+        <p class="adresse"><?= $ramoneur['adresse'] . ' ' . $ramoneur['code_postal'] . ' ' . $ramoneur['ville'] ?></p>
+        <p class="desc"><?= $ramoneur['desc'] ?></p>
+        <img class="thumbnail" src="assets/<?= $ramoneur['thumbnail'] ?>" alt="<?= $ramoneur['societe'] ?>">
+
+        <?= getCertif($ramoneur['certif']) ?>
+        <?= getCostic($ramoneur['costic']) ?>
+
+        <div class="services">
+            <span>Services :</span>
+
+            <?php getUserPrestations($ramoneur['id']) ?>
+            <?php foreach ($prestations as $prestation) : ?>
+
+                <span class="prestation">
+                <?= $prestation['name'] . ' : ' . $prestation['prix'] . ' €' ?>
+            </span>
+
+            <?php endforeach; ?>
+
+        </div>
+
+        <a class="site_web btn btn-outline-primary" href="<?= $ramoneur['url'] ?>">
+            site internet
+        </a>
+        <a class="email btn btn-outline-primary" href="<?= $ramoneur['email'] ?>">
+            E-Mail
+        </a>
+        <a class="tel btn btn-outline-primary" href="tel:<?= $ramoneur['tel'] ?>">
+            tel : <?= $ramoneur['tel'] ?>
+        </a>
+
+    </section>
+
+<?php endforeach; ?>
+</body>
+</html>
