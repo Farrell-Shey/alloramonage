@@ -1,16 +1,17 @@
 <?php
 
-if (isset($_POST['but_submit'])) {
+if (isset($_POST['login'])) {
 
-    $email = mysqli_real_escape_string($con, $_POST['email']);
-    $password = mysqli_real_escape_string($con, $_POST['password']);
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
     if ($email != "" && $password != "") {
-        $sql_query = "select count(*) as nbUser from user where user='" . $email . "' and mdp='" . $password . "'";
-        $result = mysqli_query($con, $sql_query);
-        $row = mysqli_fetch_array($result);
-        $count = $row['nbUser'];
-        if ($count > 0) {
+        $query = $conn->prepare("SELECT count(*) as nbUser FROM user WHERE email = :email AND password = :password");
+        $query->execute([
+            'email' => $email,
+            'password' => $password
+        ]);
+        if($query->rowCount() > 0) {
             $_SESSION['utilisateur'] = $email;
             header('Location: /espace_pro');
         } else {
