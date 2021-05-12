@@ -8,7 +8,7 @@ $models = glob('../Allobject/models/*.php');
 foreach ($models as $file) {
     require($file);   
 }
-require_once '../Allobject/conf/config.php';
+require_once '../src/config.php';
 
 /* STARTING USER SESSION AND REFRESH USER CONNECTION*/
 session_start();
@@ -34,7 +34,7 @@ $match ['param'] -> request _GET or _POST
 if (is_array($match)) {
     // CONTROLLER
     $params = $match['params'];
-    require "../Allobject/views/{$match['target']}.php";
+    require "../pages/home.php";
 
 } else {
     // PAGE 404
@@ -42,6 +42,3 @@ if (is_array($match)) {
 }
 
 ?>
-
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet assumenda at culpa, dolor est excepturi fugiat iste quae quo? Animi, dolore fuga in modi natus praesentium quisquam rem, reprehenderit saepe sint sunt tempore ut, veritatis? Ea impedit neque quaerat quo. Asperiores aut cupiditate eos, fuga impedit nemo quae recusandae sapiente.
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet assumenda at culpa, dolor est excepturi fugiat iste quae quo? Animi, dolore fuga in modi natus praesentium quisquam rem, reprehenderit saepe sint sunt tempore ut, veritatis? Ea impedit neque quaerat quo. Asperiores aut cupiditate eos, fuga impedit nemo quae recusandae sapiente.

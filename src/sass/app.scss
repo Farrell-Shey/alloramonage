@@ -1,0 +1,23 @@
+
+// import de toutes les constantes
+@import "variables";
+@import "normalize";
+
+
+//import de tout les composants présent sur le site
+// @import "components/_____";
+@import "components/btn";
+@import "components/display";
+@import "components/form-floating";
+@import "components/menu-burger";
+
+
+// import de tous les layouts présent sur le site
+// @import "layouts/_____";
+@import "layouts/bootstrap-flex";
+@import "layouts/header";
+@import "layouts/registration";
+
+
+// import de design général de page
+// @import "pages/_____";
