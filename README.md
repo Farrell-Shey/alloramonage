@@ -1,3 +1,0 @@
-# Alloramonage
-
-Projet pour CanoP
