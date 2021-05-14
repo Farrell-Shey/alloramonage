@@ -1,7 +1,7 @@
 <?php
 
 ?>
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/assets/css/app.css" type="text/css">
-    <title>Document</title>
+    <title><?php echo $metatitle ?></title>
 
 </head>
 <body>
@@ -43,19 +43,19 @@
             <ul>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/conseils" class="nav-link">
                         Conseils
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/annuaire" class="nav-link">
                         Annuaires des ramoneurs
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="#" class="nav-link active">
+                    <a href="/prestations" class="nav-link active">
                         Prestations
                     </a>
                 </li>
@@ -99,7 +99,7 @@
                         <input type="password" class="form-control" id="mdp" name="mdp" placeholder="*******" required="">
                         <label for="mdp">Mot de Passe</label>
                     </div>
-                    <a href="#" class="oubli">mot de passe oublié ?</a>
+                    <a href="#" class="oubli">Mot de passe oublié ?</a>
 
 
                     <button class="btn btn-primary" type="submit">SE CONNECTER</button>
@@ -109,7 +109,7 @@
 
             <div class="col-12 col-md-6 inscription">
                 <form class="form-connection" method="post" action="/annuaire_revendeurs_distributeurs_poele_bois/inscription.php">
-                    <span class="strong-title mb-3">s'inscrire</span>
+                    <span class="strong-title mb-3">S'INSCRIRE</span>
 
                     <div class="part_1">
                         <div class="form-floating mb-3">
@@ -118,16 +118,16 @@
                         </div>
                         <div class="form-floating mb-3">
                             <input type="password" class="form-control" id="password" name="password" placeholder="*******" required="">
-                            <label for="password">Mot de Passe</label>
+                            <label for="password">Mot de passe</label>
                         </div>
                         <div class="form-floating">
                             <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="*******" required="">
-                            <label for="confirm-password">Confirmer mot de passe</label>
+                            <label for="confirm-password">Confirmer le mot de passe</label>
                         </div>
                     </div>
 
                     <div class="part_2">
-                        <span class="title_h2">Information nécessaire sur l’entreprise</span>
+                        <span class="title_h2">Informations nécessaires sur l’entreprise</span>
                         <div class="form-floating mb-3">
                             <input type="text" class="form-control" id="societe" name="societe" placeholder="*******" required="">
                             <label for="societe">Nom de l’entreprise</label>
@@ -170,4 +170,5 @@
 </div>
 
 <main>
-
+</main>
+</html>

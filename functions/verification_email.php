@@ -1,7 +1,5 @@
 <?php
 
-require $_SERVER['DOCUMENT_ROOT'] . "/src/config.php";
-
 if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['email_check']) && $_POST['email_check'] == 1) {
     $email= mysqli_real_escape_string($conn, $_POST['email']);
     $sqlcheck = "SELECT email FROM user WHERE email = '$email' ";

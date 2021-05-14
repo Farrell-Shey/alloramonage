@@ -1,44 +1,33 @@
 <?php
 
 /* LOADING OBJECT */
-require '../vendor/autoload.php';
+require '../functions/AltoRouter.php';
 
 /* REQUIRE MODELS AND CONFIG */
-$models = glob('../Allobject/models/*.php');
-foreach ($models as $file) {
-    require($file);   
-}
-require_once '../src/config.php';
+require "../functions/config.php";
 
 /* STARTING USER SESSION AND REFRESH USER CONNECTION*/
 session_start();
-
 
 /* ROOTING MAP */
 
 $uri = $_SERVER['REQUEST_URI'];
 $router = new AltoRouter();
 
-$router->map('GET', '/', 'home');
-$router->map('GET', '/conseils', 'conseils', 'conseils');
-$router->map('GET', '/annuaire', 'annuaire', 'annuaire');
-$router->map('GET', '/avis', 'avis', 'avis');
-$router->map('GET', '/faq', 'faq', 'faq');
-$router->map('GET', '/connexion', 'connexion', 'connexion');
+$router->map('GET', '/', '/pages/home');
+$router->map('GET', '/conseils', '/pages/conseils', 'conseils');
+$router->map('GET', '/annuaire', '/pages/annuaire', 'annuaire');
+$router->map('GET', '/prestations', '/pages/prestations', 'prestations');
+$router->map('GET', '/espace_pro', '/pages/espace_pro', 'espace_pro');
+$router->map('POST', '/login', '/functions/login', 'login');
+$router->map('POST', '/logout', '/functions/logout', 'logout');
+$router->map('POST', '/inscription', '/functions/inscription', 'inscription');
 $match = $router->match();
 
-/*
-$match ['param'] -> request _GET or _POST
-*/
-
+//$match ['param'] -> request _GET or _POST
 if (is_array($match)) {
-    // CONTROLLER
     $params = $match['params'];
-    require "../pages/home.php";
-
+    require "../{$match['target']}.php";
 } else {
-    // PAGE 404
-    require "../Allobject/views/404.php";
+    require  "../pages/404.php";
 }
-
-?>
