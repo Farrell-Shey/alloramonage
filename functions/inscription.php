@@ -2,9 +2,9 @@
 
 if (isset($_POST['inscription'])) {
 
-    $email = $_POST['email_inscription'];
-    $password = $_POST['mot_de_passe'];
-    $societe = $_POST['nom_entreprise'];
+    $email = $_POST['mail_inscription'];
+    $password = hash("sha256", $_POST['password_inscription']);
+    $societe = $_POST['societe'];
     $siren = $_POST['siren'];
     $adresse = $_POST['adresse'];
     $code_postal = $_POST['code_postal'];
@@ -26,5 +26,8 @@ if (isset($_POST['inscription'])) {
         'created' => $timestamp,
         'updated' => $timestamp,
     ]);
+
+    $_SESSION['utilisateur'] = $email;
+    header('Location: /conseils');
 
 } 

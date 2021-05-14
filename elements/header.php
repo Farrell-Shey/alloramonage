@@ -87,81 +87,81 @@
     <aside class="modal-registration" onclick="document.getElementById('registration').classList.toggle('d-none');">
         <div class="row">
 
+            <?php // CONNEXION ?>
             <div class="col-12 col-md-6 connection">
-                <form class="form-connection" method="post" action="/annuaire_revendeurs_distributeurs_poele_bois/inscription.php">
-                    <span class="strong-title mb-3">me connecter</span>
+                <form id="form_login" class="form-connection" method="post" action="/login">
+                    <span class="strong-title mb-3">ME CONNECTER</span>
 
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="mail" name="mail" placeholder="name@example.com" required="">
-                        <label for="mail">Adresse E-Mail</label>
+                        <input type="email" class="form-control" id="mail_login" name="mail_login" placeholder="name@example.com" required>
+                        <label for="mail_login">Adresse E-Mail</label>
                     </div>
                     <div class="form-floating">
-                        <input type="password" class="form-control" id="mdp" name="mdp" placeholder="*******" required="">
-                        <label for="mdp">Mot de Passe</label>
+                        <input type="password" class="form-control" id="password_login" name="password_login" placeholder="*******" required>
+                        <label for="password_login">Mot de passe</label>
                     </div>
                     <a href="#" class="oubli">Mot de passe oublié ?</a>
 
-
-                    <button class="btn btn-primary" type="submit">SE CONNECTER</button>
-
+                    <button name="login" id="login" class="btn btn-primary" type="submit">SE CONNECTER</button>
                 </form>
             </div>
 
+            <?php // INSCRIPTION ?>
             <div class="col-12 col-md-6 inscription">
-                <form class="form-connection" method="post" action="/annuaire_revendeurs_distributeurs_poele_bois/inscription.php">
+                <form class="form-connection" method="post" action="/inscription">
                     <span class="strong-title mb-3">S'INSCRIRE</span>
 
                     <div class="part_1">
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="mail" name="mail" placeholder="name@example.com" required="">
-                            <label for="mail">Adresse E-Mail</label>
+                            <input type="email" class="form-control" id="mail_inscription" name="mail_inscription" placeholder="name@example.com" required>
+                            <label for="mail_inscription">Adresse E-Mail</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="password" name="password" placeholder="*******" required="">
-                            <label for="password">Mot de passe</label>
+                            <input type="password" class="form-control" id="password_inscription" name="password_inscription" placeholder="*******" required>
+                            <label for="password_inscription">Mot de passe</label>
                         </div>
                         <div class="form-floating">
-                            <input type="password" class="form-control" id="confirm-password" name="confirm-password" placeholder="*******" required="">
-                            <label for="confirm-password">Confirmer le mot de passe</label>
+                            <input type="password" class="form-control" id="confirm_password_inscription" name="confirm_password_inscription" placeholder="*******" required>
+                            <label for="confirm_password_inscription">Confirmer le mot de passe</label>
                         </div>
                     </div>
 
                     <div class="part_2">
                         <span class="title_h2">Informations nécessaires sur l’entreprise</span>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="societe" name="societe" placeholder="*******" required="">
+                            <input type="text" class="form-control" id="societe" name="societe" placeholder="societe" required>
                             <label for="societe">Nom de l’entreprise</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="confirm-password" class="form-control" id="confirm-password" name="confirm-password" placeholder="*******" required="">
-                            <label for="confirm-password">SIREN</label>
+                            <input type="text" pattern="[0-9]{9}" class="form-control" id="siren" name="siren" placeholder="siren" required>
+                            <label for="siren">SIREN</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="confirm-password" class="form-control" id="confirm-password" name="confirm-password" placeholder="*******" required="">
-                            <label for="confirm-password">Adresse de l’entreprise</label>
+                            <input type="text" class="form-control" id="adresse" name="adresse" placeholder="adresse" required>
+                            <label for="adresse">Adresse de l’entreprise</label>
                         </div>
                         <div class="row">
                             <div class="col-4">
                                 <div class="form-floating">
-                                    <input type="confirm-password" class="form-control" id="confirm-password" name="confirm-password" placeholder="*******" required="">
-                                    <label for="confirm-password">Code postal</label>
+                                    <input type="text" pattern="[0-9]{5}" class="form-control" id="code_postal" name="code_postal" placeholder="code postal" required>
+                                    <label for="code_postal">Code postal</label>
                                 </div>
                             </div>
                             <div class="col-8" style="padding-left: 20px">
                                 <div class="form-floating mb-3">
-                                    <input type="confirm-password" class="form-control" id="confirm-password" name="confirm-password" placeholder="*******" required="">
-                                    <label for="confirm-password">Ville</label>
+                                    <input type="text" class="form-control" id="ville" name="ville" placeholder="ville" required>
+                                    <label for="ville">Ville</label>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-floating">
-                            <input type="confirm-password" class="form-control" id="confirm-password" name="confirm-password" placeholder="*******" required="">
-                            <label for="confirm-password">N° de téléphone</label>
+                            <input type="tel" pattern="[0]{1}[0-9]{9}" class="form-control" id="telephone" name="telephone" placeholder="0000000000" required>
+                            <label for="telephone">N° de téléphone (10 chiffres)</label>
                         </div>
 
                     </div>
-                    <button class="btn btn-outline-primary" type="submit">FINALISER MON INSCRIPTION</button>
+                    <button name="inscription" id="inscription" class="btn btn-outline-primary" type="submit">FINALISER MON INSCRIPTION</button>
 
                 </form>
             </div>

@@ -18,7 +18,6 @@ $router->map('GET', '/', '/pages/home');
 $router->map('GET', '/conseils', '/pages/conseils', 'conseils');
 $router->map('GET', '/annuaire', '/pages/annuaire', 'annuaire');
 $router->map('GET', '/prestations', '/pages/prestations', 'prestations');
-$router->map('GET', '/espace_pro', '/pages/espace_pro', 'espace_pro');
 $router->map('POST', '/login', '/functions/login', 'login');
 $router->map('POST', '/logout', '/functions/logout', 'logout');
 $router->map('POST', '/inscription', '/functions/inscription', 'inscription');
