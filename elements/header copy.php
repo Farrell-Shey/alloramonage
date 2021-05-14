@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/assets/css/app.css" type="text/css">
     <title><?php echo $metatitle ?></title>
-    <script src="/assets/js/app.js"></script>
+    <script src="../src/js/app.js"></script>
 
 </head>
 <body>
@@ -94,11 +94,11 @@
                     <span class="strong-title mb-3">ME CONNECTER</span>
 
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="mail_login" name="mail_login" placeholder="name@example.com">
+                        <input type="email" class="form-control" id="mail_login" name="mail_login" placeholder="name@example.com" required>
                         <label for="mail_login">Adresse E-Mail</label>
                     </div>
                     <div class="form-floating">
-                        <input type="password" class="form-control" id="password_login" name="password_login" placeholder="*******">
+                        <input type="password" class="form-control" id="password_login" name="password_login" placeholder="*******" required>
                         <label for="password_login">Mot de passe</label>
                     </div>
                     <a href="#" class="oubli">Mot de passe oublié ?</a>
@@ -114,15 +114,15 @@
 
                     <div class="part_1">
                         <div class="form-floating mb-3">
-                            <input type="email" class="form-control" id="mail_inscription" name="mail_inscription" placeholder="name@example.com">
+                            <input type="email" class="form-control" id="mail_inscription" name="mail_inscription" placeholder="name@example.com" required>
                             <label for="mail_inscription">Adresse E-Mail</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="password" class="form-control" id="password_inscription" name="password_inscription" placeholder="*******">
+                            <input type="password" class="form-control" id="password_inscription" name="password_inscription" placeholder="*******" required>
                             <label for="password_inscription">Mot de passe</label>
                         </div>
                         <div class="form-floating">
-                            <input type="password" class="form-control" id="confirm_password_inscription" name="confirm_password_inscription" placeholder="*******">
+                            <input type="password" class="form-control" id="confirm_password_inscription" name="confirm_password_inscription" placeholder="*******" required>
                             <label for="confirm_password_inscription">Confirmer le mot de passe</label>
                         </div>
                     </div>
@@ -130,34 +130,34 @@
                     <div class="part_2">
                         <span class="title_h2">Informations nécessaires sur l’entreprise</span>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="societe" name="societe" placeholder="societe">
+                            <input type="text" class="form-control" id="societe" name="societe" placeholder="societe" required>
                             <label for="societe">Nom de l’entreprise</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" pattern="[0-9]{9}" class="form-control" id="siren" name="siren" placeholder="siren">
+                            <input type="text" pattern="[0-9]{9}" class="form-control" id="siren" name="siren" placeholder="siren" required>
                             <label for="siren">SIREN</label>
                         </div>
                         <div class="form-floating mb-3">
-                            <input type="text" class="form-control" id="adresse" name="adresse" placeholder="adresse">
+                            <input type="text" class="form-control" id="adresse" name="adresse" placeholder="adresse" required>
                             <label for="adresse">Adresse de l’entreprise</label>
                         </div>
                         <div class="row">
                             <div class="col-4">
                                 <div class="form-floating">
-                                    <input type="text" pattern="[0-9]{5}" class="form-control" id="code_postal" name="code_postal" placeholder="code postal">
+                                    <input type="text" pattern="[0-9]{5}" class="form-control" id="code_postal" name="code_postal" placeholder="code postal" required>
                                     <label for="code_postal">Code postal</label>
                                 </div>
                             </div>
                             <div class="col-8" style="padding-left: 20px">
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control" id="ville" name="ville" placeholder="ville">
+                                    <input type="text" class="form-control" id="ville" name="ville" placeholder="ville" required>
                                     <label for="ville">Ville</label>
                                 </div>
                             </div>
                         </div>
 
                         <div class="form-floating">
-                            <input type="tel" pattern="[0]{1}[0-9]{9}" class="form-control" id="telephone" name="telephone" placeholder="0000000000">
+                            <input type="tel" pattern="[0]{1}[0-9]{9}" class="form-control" id="telephone" name="telephone" placeholder="0000000000" required>
                             <label for="telephone">N° de téléphone (10 chiffres)</label>
                         </div>
 

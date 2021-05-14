@@ -12,7 +12,7 @@ if (isset($_POST['inscription'])) {
     $telephone = $_POST['telephone'];
     $timestamp = date('Y-m-d H:i:s');
 
-    $query = $conn->prepare('INSERT INTO `user` (`password`, `email`, `societe`, `siren`, `adresse`, `code_postal`, `ville`, `tel`, `created_at`, `updated_at`) VALUES (:password, :email, :societe, :siren, :adresse, :code_postal, :ville, :telephone, :created, :updated)');
+    /*$query = $conn->prepare('INSERT INTO `user` (`password`, `email`, `societe`, `siren`, `adresse`, `code_postal`, `ville`, `tel`, `created_at`, `updated_at`) VALUES (:password, :email, :societe, :siren, :adresse, :code_postal, :ville, :telephone, :created, :updated)');
 
     $query->execute([
         'password' => $password,
@@ -27,7 +27,7 @@ if (isset($_POST['inscription'])) {
         'updated' => $timestamp,
     ]);
 
-    $_SESSION['utilisateur'] = $email;
+    $_SESSION['utilisateur'] = $email;*/
     header('Location: /conseils');
 
 } 

@@ -21,6 +21,7 @@ $router->map('GET', '/prestations', '/pages/prestations', 'prestations');
 $router->map('POST', '/login', '/functions/login', 'login');
 $router->map('POST', '/logout', '/functions/logout', 'logout');
 $router->map('POST', '/inscription', '/functions/inscription', 'inscription');
+$router->map('POST', '/verification_email', '/functions/verification_email', 'verification_email');
 $match = $router->match();
 
 //$match ['param'] -> request _GET or _POST
