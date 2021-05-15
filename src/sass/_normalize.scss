@@ -31,6 +31,10 @@ a {
   text-decoration: none;
 }
 
+main {
+  margin-top: 60px;
+}
+
 :focus {
   outline: none;
 }
@@ -56,4 +60,10 @@ a {
   height: 3px;
   border-radius: 10px;
   background: #ca476c;
+}
+
+@media (min-width: 1200px) {
+  main {
+    margin-top: 84px;
+  }
 }

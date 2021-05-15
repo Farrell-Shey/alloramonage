@@ -171,5 +171,3 @@
 </div>
 
 <main>
-</main>
-</html>
