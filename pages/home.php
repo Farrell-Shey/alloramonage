@@ -12,24 +12,9 @@ require ("../elements/header.php");
     <div class="filter-black">
         <div class="container">
             <h1 class="title_h1">Trouvez un ramoneur<br>près de chez vous & comparez</h1>
-            <form action="#" method="get" class="search-bar">
-                <div class="form-floating">
-                    <input type="text" class="form-control" id="departement" name="departement" placeholder="*******" required="">
-                    <label for="departement">Départment</label>
-                </div>
-                <div class="form-floating">
-                    <select class="form-select" id="service">
-                        <option selected disabled hidden>selectionner un service</option>
-                        <?php foreach ($services as $service): ?>
 
-                            <option value="<?= $service['id'] ?>"><?= $service['name'] ?></option>
+            <?php include '../elements/search-bar.php'?>
 
-                        <?php endforeach; ?>
-                    </select>
-                    <label for="service">Service recherché</label>
-                </div>
-                <button class="btn btn-primary" type="submit">RECHERCHER</button>
-            </form>
         </div>
     </div>
 </section>
