@@ -14,18 +14,24 @@ session_start();
 $uri = $_SERVER['REQUEST_URI'];
 $router = new AltoRouter();
 
-/* PAGES PUBLIQUES */
 $router->map('GET', '/', '/pages/home');
 $router->map('GET', '/conseils', '/pages/conseils', 'conseils');
-$router->map('GET', '/annuaire', '/pages/annuaire', 'annuaire');
-$router->map('GET', '/prestations', '/pages/prestations', 'prestations');
+// route vers les pages HTML du site - target = 'pages/'
+// renvoie vers les fichiers qui se trouvent dans 'pages/'
+$router->map('GET', '/', 'pages/', 'home');
+$router->map('GET', '/conseils', 'pages/', 'conseils');
+$router->map('GET', '/[*:departement]/[*:service]', 'pages/annuaire');
+$router->map('GET', '/annuaire', 'pages/', 'annuaire');
+$router->map('GET', '/prestations', 'pages/', 'prestations');
 
-/* FONCTIONS */
-$router->map('POST', '/login', '/functions/login', 'login');
-$router->map('POST', '/logout', '/functions/logout', 'logout');
-$router->map('POST', '/inscription', '/functions/inscription', 'inscription');
-$router->map('POST', '/verification_email', '/functions/verification_email', 'verification_email');
+//route vers l'api rest du site - target = 'functions/'
+// renvoie vers les fichiers qui se trouvent dans 'functions/'
+$router->map('POST', '/login', 'functions/', 'login');
+$router->map('POST', '/logout', 'functions/', 'logout');
+$router->map('POST', '/inscription', 'functions/', 'inscription');
+$router->map('POST', '/verification_email', 'functions/', 'verification_email');
 
+$router->map('GET', '/search', 'functions/', 'search');
 /* PARTIE ADMINISTRATION */
 $router->map('GET', '/administration', '/pages/administration/admin', 'administration');
 $router->map('GET', '/administration/revendeurs', '/pages/administration/revendeurs', 'administration_revendeurs');
@@ -36,13 +42,17 @@ $router->map('POST', '/getColumns', '/functions/administration/admin', 'getColum
 
 $match = $router->match();
 
+// $match est une variable créée grâce au routing de AltoRouter
+// regroupe toutes les information sur la route actuelle
 $_SESSION['match'] = $match = $router->match();
 
-
-//$match ['param'] -> request _GET or _POST
+// si $match n'est pas un tableau alors l'url ne correspond à aucune route existante donc direction la page 404
 if (is_array($match)) {
-    $params = $match['params'];
-    require "../".$match['target'].".php";
+
+    require "../" . $match['target'] . ( isset($match['name']) ? $match['name'] : null ) . ".php";
+
 } else {
+
     require  "../pages/404.php";
+
 }

@@ -65,7 +65,7 @@
 
         <?php // NAV DESKTOP LEFT ?>
         <div id="profile" class="nav-desktop d-none d-sm-block">
-            <div class="mr-1">
+            <div class="mr-2">
 
                 <a class="btn btn-outline-dark btn-lg d-none d-sm-block" onclick="document.getElementById('registration').classList.toggle('d-none');">
                     Espace Pro

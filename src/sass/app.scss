@@ -10,6 +10,7 @@
 @import "components/display";
 @import "components/form-floating";
 @import "components/menu-burger";
+@import "components/search-bar";
 
 
 // import de tous les layouts présent sur le site
@@ -21,3 +22,4 @@
 
 // import de design général de page
 // @import "pages/_____";
+@import "pages/home";

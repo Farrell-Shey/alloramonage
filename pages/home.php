@@ -8,26 +8,15 @@ require ("../elements/header.php");
 
 ?>
 
-<section class="home-jumbotron">
-    <h1 class="title_h1">Trouvez un ramoneur<br>près de chez vous & comparez</h1>
-    <form>
-        <div class="form-floating">
-            <input type="text" class="form-control" id="departement" name="departement" placeholder="*******" required="">
-            <label for="departement">Ville, Départment</label>
-        </div>
-        <div class="form-floating">
-            <select class="form-select" id="service">
-                <option selected disabled hidden>selectionner un service</option>
-                <?php foreach ($services as $service): ?>
+<section class="home-jumbotron" style="background: url('/assets/img/bg_home.jpg')">
+    <div class="filter-black">
+        <div class="container">
+            <h1 class="title_h1">Trouvez un ramoneur<br>près de chez vous & comparez</h1>
 
-                <option value="<?= $service['id'] ?>"><?= $service['name'] ?></option>
+            <?php include '../elements/search-bar.php'?>
 
-                <?php endforeach; ?>
-            </select>
-            <label for="service">Service recherché</label>
         </div>
-        <button class="btn btn-outline-primary" type="submit">RECHERCHER</button>
-    </form>
+    </div>
 </section>
 <section class="container">
     <h2 class="title_h2">Pourquoi faire appel à un ramoneur ?</h2>
