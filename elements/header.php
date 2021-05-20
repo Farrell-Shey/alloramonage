@@ -163,7 +163,6 @@
 
                     </div>
                     <button name="inscription" id="inscription" class="btn btn-outline-primary" type="submit">FINALISER MON INSCRIPTION</button>
-
                 </form>
             </div>
         </div>

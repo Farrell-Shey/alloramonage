@@ -5,6 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <link rel="stylesheet" href="/assets/css/app.css" type="text/css">
     <title><?php echo $metatitle ?></title>
     <script src="/assets/js/app.js"></script>
@@ -13,7 +14,7 @@
 <header id="header">
 
     <?php // HEADER DESKTOP ?>
-    <div class="header-desktop">
+    <div class="header-desktop" style="position: unset !important;">
 
         <?php // LOGO SITE ?>
         <a href="/" class="logo_allo">

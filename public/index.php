@@ -27,12 +27,12 @@ $router->map('POST', '/inscription', '/functions/inscription', 'inscription');
 $router->map('POST', '/verification_email', '/functions/verification_email', 'verification_email');
 
 /* PARTIE ADMINISTRATION */
-$router->map('GET', '/administration', '/pages/admin', 'administration');
+$router->map('GET', '/administration', '/pages/administration/admin', 'administration');
 $router->map('GET', '/administration/revendeurs', '/pages/administration/revendeurs', 'administration_revendeurs');
 $router->map('GET', '/administration/activites', '/pages/administration/activites', 'administration_activites');
 $router->map('GET', '/administration/commentaires_a_valider', '/pages/administration/commentaires_a_valider', 'administration_commentaires_a_valider');
 $router->map('GET', '/administration/commentaires_valides', '/pages/administration/commentaires_valides', 'administration_commentaires_valides');
-$router->map('POST', '/getColumns', '/functions/admin', 'getColumns');
+$router->map('POST', '/getColumns', '/functions/administration/admin', 'getColumns');
 
 $match = $router->match();
 

@@ -1,13 +1,13 @@
 <?php
 
 require ("../elements/header_administration.php");
-require ('../functions/admin.php');
+require ('../functions/administration/admin.php');
 
 $tables = getTables();
 
 ?>
 
-<!-- <label for="table-select">Quelle table voulez-vous modifier ?</label>
+<label for="table-select">Quelle table voulez-vous modifier ?</label>
 
 <select name="table" id="table-select">
     <option selected disabled hidden>Sélectionner une table</option>
@@ -18,4 +18,4 @@ $tables = getTables();
 
 <div id="empty-select"></div>
 
-<script src='/assets/js/app.js'></script> -->
+<script src='/assets/js/app.js'></script>
