@@ -1,0 +1,17 @@
+.search-bar {
+  width: 80%;
+  margin: auto;
+  background: rgba(#644352, .75);
+  padding: 1.5rem;
+  display: flex;
+  border-radius: 5px;
+}
+
+.search-bar .form-floating {
+  width: 40%;
+  padding: 0 10px;
+}
+
+.search-bar .btn {
+  width: 20%;
+}
