@@ -10,7 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/assets/css/app.css" type="text/css">
     <title><?php echo $metatitle ?></title>
-    <script src="../src/js/app.js"></script>
+    <script src="/assets/js/app.js"></script>
 
 </head>
 <body>

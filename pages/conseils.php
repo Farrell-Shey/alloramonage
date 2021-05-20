@@ -5,9 +5,9 @@ $metatitle = "Conseils Allo Ramonage";
 require ("../elements/header.php");
 
 if (isset($_SESSION['utilisateur'])){
-    echo "<br><br><br><br>".$_SESSION['utilisateur'];
+    echo $_SESSION['utilisateur'];
 } else {
-    echo "<br><br><br><br>pas set";
+    echo "pas set";
 }
 
 if (isset($_SESSION['utilisateur'])) {

@@ -1,11 +1,11 @@
 <?php 
 
-echo '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">'; 
+// echo '<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">'; 
 
 $metatitle = "Erreur 404";
 
 ?>
-
+<!-- 
 <div class="page-wrap-404 d-flex flex-row align-items-center">
     <div class="container">
         <div class="row justify-content-center">
@@ -16,4 +16,4 @@ $metatitle = "Erreur 404";
             </div>
         </div>
     </div>
-</div>
+</div> -->
