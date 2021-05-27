@@ -1,4 +1,3 @@
-
 $(document).ready(function (e) {
   $("#inscription").click(function (e) {
     e.preventDefault();
@@ -53,7 +52,5 @@ function verification_email() {
       },
     });
   }
-
-
   return error;
 }

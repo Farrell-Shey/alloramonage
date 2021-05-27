@@ -18,7 +18,7 @@ $router = new AltoRouter();
 // renvoie vers les fichiers qui se trouvent dans 'pages/'
 $router->map('GET', '/', 'pages/home' );
 $router->map('GET', '/conseils', 'pages/conseils' );
-$router->map('GET', '/[*:departement]/[*:service]', 'pages/annuaire');
+$router->map('GET', '/annuaire/departement-[i:departement]/[*:service]', 'pages/annuaire');
 $router->map('GET', '/annuaire', 'pages/annuaire' );
 $router->map('GET', '/prestations', 'pages/prestations' );
 
@@ -37,6 +37,9 @@ $router->map('GET', '/administration/activites', '/pages/administration/activite
 $router->map('GET', '/administration/commentaires_a_valider', '/pages/administration/commentaires_a_valider', 'administration_commentaires_a_valider');
 $router->map('GET', '/administration/commentaires_valides', '/pages/administration/commentaires_valides', 'administration_commentaires_valides');
 $router->map('POST', '/getColumns', '/functions/administration/admin', 'getColumns');
+$router->map('POST', '/ajout_activite', 'functions/administration/ajout_activite', 'ajout_activite');
+$router->map('POST', '/modification_activite', 'functions/administration/modification_activite', 'modification_activite');
+$router->map('POST', '/suppression_activite', 'functions/administration/suppression_activite', 'suppression_activite');
 
 $match = $router->match();
 

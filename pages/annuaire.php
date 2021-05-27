@@ -2,7 +2,6 @@
 
 $metatitle = "Annuaire Allo Ramonage";
 
-<<<<<<< Updated upstream
 
 
 
@@ -33,9 +32,6 @@ function getCostic($costic)
         :
         null;
 }
-=======
-$menu = require($_SERVER['DOCUMENT_ROOT'] . "/src/menu.php");
->>>>>>> Stashed changes
 
 /*
  * table User
@@ -68,7 +64,6 @@ $menu = require($_SERVER['DOCUMENT_ROOT'] . "/src/menu.php");
  *    ];
  */
 
-<<<<<<< Updated upstream
 
 
 function getRamoneurs($data, $conn)
@@ -103,107 +98,10 @@ if (isset($_GET['departement']) || isset($_GET['service'])) {
 }
 
 ?>
-=======
-function getRamoneursAnnuaire($param)
-{
-    $stmt = connectToDb()->prepare('SELECT * FROM user 
-                                    INNER JOIN chalandise ON user.id = chalandise.user_id 
-                                    INNER JOIN prestation ON user.id = prestation.user_id 
-                                    WHERE prestation.service_id = :service AND chalandise.departement = :departement');
-    $stmt->bindParam(':service', $param['service']);
-    $stmt->bindParam(':departement', $param['departement']);
-    $stmt->execute();
-    return $stmt->fetchAll();
-}
-
-;
-
-/**
- * @param $ramoneur_id
- * @return array
- */
-function getUserPrestations($ramoneur_id): array
-{
-    $stmt = connectToDb()->prepare('SELECT * FROM prestation INNER JOIN service ON prestation.service_id = service.id WHERE user_id = :id');
-    $stmt->bindParam(':id', $ramoneur_id);
-    $stmt->execute();
-    return $stmt->fetchAll();
-}
-
-;
-
-/**
- * @param $certif correspond à $ramoneurs['certif']
- * @return string|null
- */
-function getCertif($certif)
-{
-    return ($certif === true) ?
-        '<div class="certif">
-            <svg width="86" height="85" viewBox="0 0 86 85" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect x="4.5" y="4.5" width="77" height="76" rx="38" stroke="#CA476C" stroke-width="9"/>
-                <rect x="13" y="13" width="60" height="59" rx="29.5" fill="#CA476C"/>
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                      d="M27 30.1999C27 28.4326 28.4326 27 30.1999 27H55.7988C57.5659 27 58.9985 28.4325 58.9986 30.1997L59 38.7353L57.2923 37.4523C55.6879 36.2469 53.695 35.533 51.5323 35.533C46.2306 35.533 41.9327 39.8308 41.9327 45.1325C41.9327 47.2953 42.6466 49.2882 43.8521 50.8926L44.0659 51.1773V58.9986H30.1999C28.4326 58.9986 27 57.566 27 55.7988V30.1999ZM44.0659 37.6662H33.3997V35.533H44.0659V37.6662ZM33.3997 44.0659H39.7994V41.9327H33.3997V44.0659Z"
-                      fill="white"/>
-                <path fill-rule="evenodd" clip-rule="evenodd"
-                      d="M51.5323 37.6662C47.4087 37.6662 44.0659 41.009 44.0659 45.1325C44.0659 47.1669 44.8796 49.0113 46.1992 50.3579V57.932C46.1992 58.336 46.4274 58.7053 46.7888 58.886C47.1501 59.0667 47.5826 59.0277 47.9058 58.7853L51.5323 56.0654L55.1588 58.7853C55.482 59.0277 55.9144 59.0667 56.2758 58.886C56.6371 58.7053 56.8654 58.336 56.8654 57.932V50.3579C58.185 49.0113 58.9986 47.1669 58.9986 45.1325C58.9986 41.009 55.6558 37.6662 51.5323 37.6662ZM48.3324 55.7988V51.8804C49.3022 52.3411 50.3871 52.5989 51.5323 52.5989C52.6774 52.5989 53.7623 52.3411 54.7321 51.8804V55.7988L52.1722 53.8788C51.793 53.5944 51.2715 53.5944 50.8923 53.8788L48.3324 55.7988Z"
-                      fill="white"/>
-            </svg>
-            <span>certificat délivré</span>
-        </div>'
-        :
-        null;
-}
-
-;
-
-/**
- * @param $costic
- * @return string|null
- */
-function getCostic($costic)
-{
-    return ($costic === true) ?
-        '<img src="#" alt="">'
-        :
-        null;
-}
-
-;
-/*
- * On va chercher tout les ramoneurs qui correspond à la recherche en question en passant les paramêtre de recherche contenu dans $param['url']
- */
-$ramoneurs = getRamoneursAnnuaire($param);
-
-?>
-
-
-<!doctype html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home</title>
-</head>
-<body>
-<section class="annuaire-jumbotron">
-    <h1 class="title-h1">L'annuaire des ramoneurs de <?= $param['departement'] ?></h1>
-    <form class="form-annuaire" method="get" action="#">
-        <div class="form-floating mb-3">
-            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Département</label>
-        </div>
-        <div class="form-floating">
-            <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
->>>>>>> Stashed changes
 
                 <?php $departements = getDepartements(); ?>
                 <?php foreach ($departements as $departement): ?>
 
-<<<<<<< Updated upstream
 
 <?php require ("../elements/header.php"); ?>
 
@@ -257,70 +155,3 @@ else: ?>
 <?php endif;
 
 require ("../elements/footer.php");
-=======
-                    <option value="<?= $departement['id'] ?>"
-                        <?= $departement['id'] === $param['departement'] ? 'selected' : null; ?>>
-                        <?= $departement['numero'] . ' - ' . $departement['name'] ?>
-                    </option>
-
-                <?php endforeach; ?>
-            </select>
-            <label for="floatingSelect">Service Recherché</label>
-        </div>
-
-        <button class="btn form-btn" type="submit">RECHERCHER</button>
-    </form>
-</section>
-
-<section class="result-recherche">
-
-    <span class="header-result"><?= $param['service'] .' dans le '. $param['departement'] . ' - ' . $param['departement'] . '<br>' . count($ramoneurs) . ' resultat' . count($ramoneurs) > 1 ? 's' : null ?></span>
-
-    <?php
-    /*
-     * Pour chaque ramoneur on fait un affichage de carte
-     * Dispotition des éléments géré avec css grid
-     */
-    foreach ($ramoneurs as $ramoneur) : ?>
-
-        <article class="card-result card">
-            <h2 class="name"><?= $ramoneur['societe'] ?></h2>
-            <p class="adresse"><?= $ramoneur['adresse'] . ' ' . $ramoneur['code_postal'] . ' ' . $ramoneur['ville'] ?></p>
-            <p class="desc"><?= $ramoneur['desc'] ?></p>
-            <img class="thumbnail" src="assets/<?= $ramoneur['thumbnail'] ?>" alt="<?= $ramoneur['societe'] ?>">
-
-            <?= getCertif($ramoneur['certif']) ?>
-            <?= getCostic($ramoneur['costic']) ?>
-
-            <div class="services">
-                <span>Services :</span>
-
-                <?php $prestations = getUserPrestations($ramoneur['id']) ?>
-                <?php foreach ($prestations as $prestation) : ?>
-
-                    <a href="service/<?php $prestation['name'] ?>"
-                       class="prestation <?= ($prestation['name'] === $param['url']['service']) ? 'active' : null; ?>">
-                        <?= $prestation['name'] . ' : ' . $prestation['prix'] . ' €' ?>
-                    </a>
-
-                <?php endforeach; ?>
-
-            </div>
-
-            <a class="site_web btn btn-outline-primary" href="<?= $ramoneur['url'] ?>">
-                site internet
-            </a>
-            <a class="email btn btn-outline-primary" href="<?= $ramoneur['email'] ?>">
-                E-Mail
-            </a>
-            <a class="tel btn btn-outline-primary" href="tel:<?= $ramoneur['tel'] ?>">
-                tel : <?= $ramoneur['tel'] ?>
-            </a>
-
-        </article>
-
-    <?php endforeach; ?>
-</section>
-</body>
-</html>
->>>>>>> Stashed changes
