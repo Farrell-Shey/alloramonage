@@ -1,6 +1,6 @@
 $(document).ready(function (e) {
   $("#inscription").click(function (e) {
-    e.preventDefault();
+    //e.preventDefault();
     if (!verification_email()) {
       e.preventDefault();
       $("#mail_inscription").addClass("is-invalid");

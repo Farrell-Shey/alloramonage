@@ -2,8 +2,8 @@
 
 $metatitle = "Panneau admin - Activités";
 
-require("../elements/header_administration.php");
-require('../functions/administration/activites.php');
+require ("../elements/header_administration.php");
+require ('../functions/administration/activites/activites.php');
 
 ?>
 
@@ -38,7 +38,7 @@ require('../functions/administration/activites.php');
       echo "<tr>";
     }
     echo "<th>".$card_activite."</th>";
-    if ($i == 2) {
+    if ($i == 3) {
       echo "</tr>";
       $i = -1;
     }
