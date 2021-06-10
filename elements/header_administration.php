@@ -41,7 +41,7 @@
             <ul>
 
                 <li class="nav-item">
-                    <a href="/administration/revendeurs" class="nav-link">
+                    <a href="/administration" class="nav-link">
                         Revendeurs
                     </a>
                 </li>

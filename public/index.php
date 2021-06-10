@@ -31,8 +31,7 @@ $router->map('POST', '/verification_email', 'functions/verification_email');
 
 $router->map('GET', '/search', 'functions/', 'search');
 /* PARTIE ADMINISTRATION */
-$router->map('GET', '/administration', '/pages/administration/admin', 'administration');
-$router->map('GET', '/administration/revendeurs', '/pages/administration/revendeurs', 'administration_revendeurs');
+$router->map('GET', '/administration', '/pages/administration/revendeurs', 'administration_revendeurs');
 $router->map('GET', '/administration/activites', '/pages/administration/activites', 'administration_activites');
 $router->map('GET', '/administration/commentaires_a_valider', '/pages/administration/commentaires_a_valider', 'administration_commentaires_a_valider');
 $router->map('GET', '/administration/commentaires_valides', '/pages/administration/commentaires_valides', 'administration_commentaires_valides');
@@ -40,6 +39,7 @@ $router->map('POST', '/getColumns', '/functions/administration/admin', 'getColum
 $router->map('POST', '/ajout_activite', 'functions/administration/activites/ajout_activite', 'ajout_activite');
 $router->map('POST', '/modification_activite', 'functions/administration/activites/modification_activite', 'modification_activite');
 $router->map('POST', '/suppression_activite', 'functions/administration/activites/suppression_activite', 'suppression_activite');
+$router->map('POST', '/revendeurs', 'functions/administration/revendeurs/revendeurs', 'revendeurs');
 
 $match = $router->match();
 

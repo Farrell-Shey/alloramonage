@@ -8,14 +8,14 @@ require('../functions/administration/revendeurs/revendeurs.php');
 ?>
 
 <br>
-<button type="button" class="btn btn-primary">Payant</button>
-<button type="button" class="btn btn-primary">Validé</button>
-<button type="button" class="btn btn-primary">À valider</button>
-<button type="button" class="btn btn-primary">En attente</button>
-<button type="button" class="btn btn-primary">Supprimé</button>
+<button type="button" class="btn btn-primary changement_revendeurs" value="10">Payant</button>
+<button type="button" class="btn btn-primary changement_revendeurs" value="1">Validé</button>
+<button type="button" class="btn btn-primary changement_revendeurs" value="0">À valider</button>
+<button type="button" class="btn btn-primary changement_revendeurs" value="2">En attente</button>
+<button type="button" class="btn btn-primary changement_revendeurs" value="9">Supprimé</button>
 <br><br>
 
-<table class="table" id="revendeurs">
+<table class="table">
     <thead>
         <tr>
             <th scope="col">ID</th>
@@ -24,17 +24,19 @@ require('../functions/administration/revendeurs/revendeurs.php');
             <th scope="col"></th>
         </tr>
     </thead>
-    <tbody>
+    <tbody id="revendeurs">
         <?php
         $revendeurs = getRevendeurs();
+        $tableau = null;
         foreach ($revendeurs as $revendeur) {
-            echo '<tr>';
-            echo '<th scope="row">' . $revendeur['id'] . '</th>';
-            echo '<th>' . $revendeur['societe'] . '</th>';
-            echo '<th>' . $revendeur['code_postal'] . '</th>';
-            echo '<th><button type="button" class="btn btn-primary modification" id="' . $revendeur['id'] . '" onclick="document.getElementById(\'registration\').classList.toggle(\'d-none\');">Modifier</button></th>';
-            echo '</tr>';
+            $tableau .= '<tr>';
+            $tableau .= '<th scope="row">' . $revendeur['id'] . '</th>';
+            $tableau .= '<th>' . $revendeur['societe'] . '</th>';
+            $tableau .= '<th>' . $revendeur['code_postal'] . '</th>';
+            $tableau .= '<th><button type="button" class="btn btn-primary modification" id="' . $revendeur['id'] . '" onclick="document.getElementById(\'registration\').classList.toggle(\'d-none\');">Modifier</button></th>';
+            $tableau .= '</tr>';
         }
+        echo $tableau;
         ?>
     </tbody>
 </table>
