@@ -16,8 +16,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['statut'])){
         $tableau .= '<th scope="row">' . $revendeur['id'] . '</th>';
         $tableau .= '<th>' . $revendeur['societe'] . '</th>';
         $tableau .= '<th>' . $revendeur['code_postal'] . '</th>';
-        $tableau .= '<th><button type="button" class="btn btn-primary modification" id="' . $revendeur['id'] . '" onclick="document.getElementById(\'registration\').classList.toggle(\'d-none\');">Modifier</button></th>';
+        $tableau .= '<th><button type="button" class="btn btn-primary modification_revendeurs" id="' . $revendeur['id'] . '" onclick="document.getElementById(\'registration\').classList.toggle(\'d-none\');">Modifier</button></th>';
         $tableau .= '</tr>';
     }
     echo $tableau;
+}
+
+if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_revendeur'])) {
+    $revendeur = $GLOBALS['conn']->query('SELECT * FROM user WHERE id = "'.$_POST['id_revendeur'].'"')->fetchAll();
+    echo json_encode($revendeur);
 }

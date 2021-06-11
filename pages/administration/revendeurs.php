@@ -14,7 +14,7 @@ require('../functions/administration/revendeurs/revendeurs.php');
 <button type="button" class="btn btn-primary changement_revendeurs" value="2">En attente</button>
 <button type="button" class="btn btn-primary changement_revendeurs" value="9">Supprimé</button>
 <br><br>
-
+<div class="testtqt"></div>
 <table class="table">
     <thead>
         <tr>
@@ -33,20 +33,20 @@ require('../functions/administration/revendeurs/revendeurs.php');
             $tableau .= '<th scope="row">' . $revendeur['id'] . '</th>';
             $tableau .= '<th>' . $revendeur['societe'] . '</th>';
             $tableau .= '<th>' . $revendeur['code_postal'] . '</th>';
-            $tableau .= '<th><button type="button" class="btn btn-primary modification" id="' . $revendeur['id'] . '" onclick="document.getElementById(\'registration\').classList.toggle(\'d-none\');">Modifier</button></th>';
+            $tableau .= '<th><button type="button" class="btn btn-primary modification_revendeurs" id="' . $revendeur['id'] . '" onclick="document.getElementById(\'registration\').classList.toggle(\'d-none\');">Modifier</button></th>';
             $tableau .= '</tr>';
         }
-        //echo $tableau;
+        echo $tableau;
         ?>
     </tbody>
 </table>
 
-<div id="registration" class="filtre-over" onclick="this.classList.toggle('d-none');">
+<input class="form-control poney" id="societe_renvendeur" name="societe_renveneur" placeholder="Nom société" >
+
+<div id="registration" class="filtre-over d-none" onclick="this.classList.toggle('d-none');">
     <aside class="modal-registration" onclick="document.getElementById('registration').classList.toggle('d-none');">
         <div class="row">
 
-            <?php // CONNEXION 
-            ?>
             <div class="col-12 col-md-6 connection">
                 <form id="form_login" class="form-connection" method="post" action="/login">
                     <!-- <span class="strong-title mb-3">ME CONNECTER</span> -->
@@ -58,7 +58,6 @@ require('../functions/administration/revendeurs/revendeurs.php');
                             </div>
                         </div>
                         <div class="col-6" style="padding-left: 20px">
-                            <!-- <div class="form-floating mb-3"> -->
                             <select class="form-select" id="statut_revendeur" name="statut_revendeur">
                                 <option id="valide" value="1">Validé</option>
                                 <option id="payant" value="10">Payant</option>
@@ -66,7 +65,6 @@ require('../functions/administration/revendeurs/revendeurs.php');
                                 <option id="attente" value="2">En attente</option>
                                 <option id="supprime" value="9">Supprimé</option>
                             </select>
-                            <!-- </div> -->
                         </div>
                     </div>
                     <div class="row">
@@ -107,7 +105,7 @@ require('../functions/administration/revendeurs/revendeurs.php');
                         <textarea class="form-control" id="refus_revendeur" name="refus_revendeur" rows="3" placeholder="Motif refus"></textarea>
                     </div>
                     <div class="form-floating mb-3">
-                        <input class="form-control" id="societe_renvendeur" name="societe_renvendeur" placeholder="Nom société" required>
+                        <input class="form-control poney" id="societe_renvendeur" name="societe_renvendeur" placeholder="Nom société" required>
                         <label for="societe_renvendeur">Société</label>
                     </div>
                     <div class="form-floating mb-3">
@@ -130,10 +128,10 @@ require('../functions/administration/revendeurs/revendeurs.php');
                     </div>
                     <div class="row">
                         <div class="col-8">
-                        <div class="form-floating mb-3">
-                        <input class="form-control" id="adresse_revendeur" name="adresse_revendeur" placeholder="Adresse revendeur" required>
-                        <label for="adresse_revendeur">Adresse</label>
-                    </div>
+                            <div class="form-floating mb-3">
+                                <input class="form-control" id="adresse_revendeur" name="adresse_revendeur" placeholder="Adresse revendeur" required>
+                                <label for="adresse_revendeur">Adresse</label>
+                            </div>
                         </div>
                         <div class="col-4" style="padding-left: 20px">
                             <div class="form-floating mb-3">
@@ -142,19 +140,15 @@ require('../functions/administration/revendeurs/revendeurs.php');
                             </div>
                         </div>
                     </div>
-                   
+
 
 
                 </form>
             </div>
 
-            <?php // INSCRIPTION 
-            ?>
             <div class="col-12 col-md-6 inscription">
                 <form class="form-connection" method="post" action="/inscription">
                     <!-- <span class="strong-title mb-3">S'INSCRIRE</span> -->
-
-                    <!-- <div class="part_1"> -->
                     <div class="row">
                         <div class="col-6">
                             <div class="form-floating mb-3">
@@ -208,6 +202,7 @@ require('../functions/administration/revendeurs/revendeurs.php');
                     </div>
 
                     <button name="inscription" id="inscription" class="btn btn-outline-primary" type="submit">ENREGISTRER LES MODIFICATIONS</button>
+
                 </form>
             </div>
         </div>
