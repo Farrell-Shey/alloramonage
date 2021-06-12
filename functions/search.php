@@ -1,19 +1,11 @@
 <?php
-
-$data = $_GET;
-
-var_dump($data);
-
-
-
-
 function getDepartement($departement, $conn)
 {
 
 
     $numbers = strpbrk($departement, '1324567890');
 
-    if ($numbers === false ) {
+    if ($numbers === false) {
 
         $stmt = $conn->prepare('SELECT * FROM departement WHERE departement.name LIKE %:departement%');
         $stmt->bindParam(':departement', $departement);
@@ -21,38 +13,61 @@ function getDepartement($departement, $conn)
         return $stmt->fetch();
 
     } else {
-
+        /* ça marche po, à modif */
+        if (strpos( $departement , '97') == true) {        // si on est sur les départements d'outre-mer -- à savoir que sur un passage php 8.0 str_contains est plus adapté
+            $departement = substr($numbers, 0, 3);
+            echo 'test';
+        } else {                                                    // si on est sur les départements métropolitain
+            $departement = substr($numbers, 0, 2);
+            echo 'test2';
+        }
         $stmt = $conn->prepare('SELECT * FROM departement WHERE departement.numero = :departement');
-        $stmt->bindParam(':departement', substr($numbers, 0, 2));
+        $stmt->bindParam(':departement', $departement);
         $stmt->execute();
         return $stmt->fetch();
 
     }
 }
 
-function getService($id)
+function getServiceBySlug($service_slug, $conn)
 {
-    $stmt = $conn->prepare('SELECT * FROM service WHERE id = :id');
-    $stmt->bindParam(':id', $id);
+    $stmt = $conn->prepare('SELECT * FROM service WHERE slug = :service_slug');
+    $stmt->bindParam(':service_slug', $service_slug);
     $stmt->execute();
     return $stmt->fetch();
 }
 
-$departement = getDepartement($data['departement']);
-$service = getService($data['service']);
-$location = '';
+/*
+ * Récupération des données à traiter
+ */
+$data = $_GET;
 
-if ($departement != false) {
-    $location .= 'departement-'.$departement['numero'];
-}
-if ($departement != false && $service != false) {
-    $location .= '/';
-}
-if ($service != false) {
-    $location .= $service['name'];
-}
+/*
+ * Vérifier que le département existe bien
+ */
+$departement = getDepartement($data['departement'], $conn);
+if ($departement == false) {
+    // renvoie de l'erreur
+    $_SESSION['error']['departement'] = $data['departement'];
+    $_SESSION['error']['service'] = $data['service'];
+    header('location: /');
+} else {
 
-var_dump($location);
-die();
+    /*
+     * Vérifier que le service existe bien
+     */
+    if (isset($data['service'])) {
+        $service = getServiceBySlug($data['service'], $conn);
+    }
 
-header( 'location : /' . $location);
+
+    /*
+     * Créer l'url pour l'annuaire
+     * typage de l'url :
+     * /annuaire/departement-[i:departement.numero]/[*:service.slug]
+     */
+    $location = 'annuaire/departement-' . $departement['numero'] . ((isset($service) && $service != false) ? '/' . $service['slug'] : null);
+
+
+    header('location: ' . $location);
+}

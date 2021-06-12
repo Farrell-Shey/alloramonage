@@ -9,7 +9,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="/assets/css/app.css" type="text/css">
-    <title><?php echo $metatitle ?></title>
+    <title><?= ( isset($metatitle) ? $metatitle : 'Pas de metatitle' ) ?></title>
     <script src="/assets/js/app.js"></script>
 
 </head>

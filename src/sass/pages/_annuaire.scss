@@ -1,0 +1,25 @@
+.result {
+  width: 90%;
+  margin: 120px auto 0;
+
+  .text {
+    margin-bottom: 20px;
+  }
+}
+
+.no-result {
+  background: #f8f9fa;
+  width: 100%;
+  padding: 1rem;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 1rem;
+  border: 2px solid #352D30;
+}
+
+@media (min-width: 1200px) {
+  .result {
+    margin: 70px auto 0;
+  }
+}

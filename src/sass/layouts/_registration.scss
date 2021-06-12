@@ -10,9 +10,11 @@
 }
 
 .modal-registration {
+  overflow-y: scroll;
+  max-width: 90%;
+  max-height: 90%;
   font-size: .8rem;
   margin: auto;
-  max-width: 1400px;
   min-width: 70%;
   background: #fff;
   padding: 1rem;
@@ -81,6 +83,10 @@
 
   .inscription, .connection {
     flex-wrap: nowrap;
+  }
+
+  .modal-registration {
+    max-width: 1400px;
   }
 
   .connection:after {

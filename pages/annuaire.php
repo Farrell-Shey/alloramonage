@@ -1,10 +1,5 @@
 <?php
 
-$metatitle = "Annuaire Allo Ramonage";
-
-
-
-
 function getCertif($certif)
 {
     return ($certif === true) ?
@@ -32,6 +27,31 @@ function getCostic($costic)
         :
         null;
 }
+
+function getServiceBySlug($service_slug, $conn)
+{
+    $stmt = $conn->prepare('SELECT * FROM service WHERE slug = :service_slug');
+    $stmt->bindParam(':service_slug', $service_slug);
+    $stmt->execute();
+    return $stmt->fetch();
+}
+
+function getDepartementByNumero($depatement_numero, $conn)
+{
+    $stmt = $conn->prepare('SELECT * FROM departement WHERE numero = :depatement_numero');
+    $stmt->bindParam(':depatement_numero', $depatement_numero);
+    $stmt->execute();
+    return $stmt->fetch();
+}
+
+if (isset($_SESSION['match']['params']['departement'])){
+    $departement = getDepartementByNumero($_SESSION['match']['params']['departement'], $conn);
+}
+
+if (isset($_SESSION['match']['params']['service'])) {
+    $service = getServiceBySlug($_SESSION['match']['params']['service'], $conn);
+}
+
 
 /*
  * table User
@@ -65,7 +85,9 @@ function getCostic($costic)
  */
 
 
-
+/*
+ * désactivé tant que la bdd n'est pas à jour
+ *
 function getRamoneurs($data, $conn)
 {
     $request = 'SELECT * FROM users ' .
@@ -86,72 +108,96 @@ function getRamoneurs($data, $conn)
     $stmt->execute();
     return $stmt->fetchAll();
 }
+*/
 
 /*
- * On va chercher tout les ramoneurs qui correspond à la recherche en question en passant les paramêtre de recherche contenu dans $param['url']
+ * On va chercher tout les ramoneurs qui correspond à la recherche en question en passant les paramêtres de recherche contenu dans $param['url']
  */
+/*
 if (isset($_GET['departement']) || isset($_GET['service'])) {
     $data = $_GET;
     $ramoneurs = getRamoneurs($data, $conn);
     var_dump($ramoneurs);
     die();
 }
+*/
 
+if (isset($_SESSION['match']['params']['departement'])) { // lorsqu'une recherche est en cours
+    $metatitle = 'Tout les Ramoneurs pour '.$departement['name']. (isset($service['name']) ? ' - '.$service['name'] : null);
+} else { // metatitle par défaut
+    $metatitle = "Recherchez les Ramoneurs proche de chez vous | AlloRamonage";
+}
 ?>
 
-                <?php $departements = getDepartements(); ?>
-                <?php foreach ($departements as $departement): ?>
+
+<?php require("../elements/header.php"); ?>
+
+    <section class="search-annuaire">
+        <h1>L’annuaire des ramoneurs <?= isset($departement) ? 'pour '.$departement['name'] : 'de vos régions' ?></h1>
+        <?php require("../elements/search-bar.php"); ?>
+    </section>
+
+    <section class="result">
 
 
-<?php require ("../elements/header.php"); ?>
+        <?php
+        /*
+         * Pour chaque ramoneur on fait un affichage de carte
+         */
+        if (isset($ramoneurs) && $ramoneurs != null) :
+            foreach ($ramoneurs as $ramoneur) : ?>
 
-<?php
-/*
- * Pour chaque ramoneur on fait un affichage de carte
- */
-if (isset($ramoneurs) && $ramoneurs != null) :
-    foreach ($ramoneurs as $ramoneur) : ?>
+                <section class="card-result card">
 
-        <section class="card-result card">
-            <h2 class="name"><?= $ramoneur['societe'] ?></h2>
-            <p class="adresse"><?= $ramoneur['adresse'] . ' ' . $ramoneur['code_postal'] . ' ' . $ramoneur['ville'] ?></p>
-            <p class="desc"><?= $ramoneur['desc'] ?></p>
-            <img class="thumbnail" src="assets/<?= $ramoneur['thumbnail'] ?>" alt="<?= $ramoneur['societe'] ?>">
 
-            <?= getCertif($ramoneur['certif']) ?>
-            <?= getCostic($ramoneur['costic']) ?>
+                    <h2 class="name"><?= $ramoneur['societe'] ?></h2>
+                    <p class="adresse"><?= $ramoneur['adresse'] . ' ' . $ramoneur['code_postal'] . ' ' . $ramoneur['ville'] ?></p>
+                    <p class="desc"><?= $ramoneur['desc'] ?></p>
+                    <img class="thumbnail" src="assets/<?= $ramoneur['thumbnail'] ?>" alt="<?= $ramoneur['societe'] ?>">
 
-            <div class="services">
-                <span>Services :</span>
+                    <?= getCertif($ramoneur['certif']) ?>
+                    <?= getCostic($ramoneur['costic']) ?>
 
-                <?php getUserPrestations($ramoneur['id']) ?>
-                <?php foreach ($prestations as $prestation) : ?>
+                    <div class="services">
+                        <span>Services :</span>
 
-                    <span class="prestation">
+                        <?php getUserPrestations($ramoneur['id']) ?>
+                        <?php foreach ($prestations as $prestation) : ?>
+
+                            <span class="prestation">
                 <?= $prestation['name'] . ' : ' . $prestation['prix'] . ' €' ?>
             </span>
 
-                <?php endforeach; ?>
+                        <?php endforeach; ?>
 
+                    </div>
+
+                    <a class="site_web btn btn-outline-primary" href="<?= $ramoneur['url'] ?>">
+                        site internet
+                    </a>
+                    <a class="email btn btn-outline-primary" href="<?= $ramoneur['email'] ?>">
+                        E-Mail
+                    </a>
+                    <a class="tel btn btn-outline-primary" href="tel:<?= $ramoneur['tel'] ?>">
+                        tel : <?= $ramoneur['tel'] ?>
+                    </a>
+
+                </section>
+
+            <?php endforeach;
+            /*
+             * Message affiché si il n'y a pas de ramoneur pour la région séléctionnée
+             * */
+        elseif (isset($departement)): ?>
+            <div class="no-result">
+                <div class="text"><?= ucfirst($departement['name']) ?> n'a pas encore de Ramoneur enregistré <?= isset($_SESSION['match']['param']['service']) ? 'pour la réalisation de '.$_SESSION['match']['param']['service'] : null ?></div>
+                <a class="btn btn-outline-primary btn-lg" onclick="document.getElementById('registration').classList.toggle('d-none');">
+                    Professionel dans ce département ?
+                </a>
             </div>
 
-            <a class="site_web btn btn-outline-primary" href="<?= $ramoneur['url'] ?>">
-                site internet
-            </a>
-            <a class="email btn btn-outline-primary" href="<?= $ramoneur['email'] ?>">
-                E-Mail
-            </a>
-            <a class="tel btn btn-outline-primary" href="tel:<?= $ramoneur['tel'] ?>">
-                tel : <?= $ramoneur['tel'] ?>
-            </a>
+        <?php endif; ?>
 
-        </section>
+    </section>
 
-    <?php endforeach;
-else: ?>
-
-<span>pas de résultat</span>
-
-<?php endif;
-
-require ("../elements/footer.php");
+<?php require("../elements/footer.php");

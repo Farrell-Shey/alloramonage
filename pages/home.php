@@ -1,6 +1,6 @@
 <?php
 
-
+$metatitle = 'L\'annuaire des Ramoneurs de France AlloRamonage';
 
 //$services = getServices();
 
@@ -8,7 +8,7 @@ require ("../elements/header.php");
 
 ?>
 
-<section class="home-jumbotron" style="background: url('/assets/img/bg_home.jpg')">
+<section class="home-jumbotron" style="background-image: url('/assets/img/bg_home.jpg')">
     <div class="filter-black">
         <div class="container">
             <h1 class="title_h1">Trouvez un ramoneur<br>près de chez vous & comparez</h1>

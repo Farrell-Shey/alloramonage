@@ -19,6 +19,7 @@ $router = new AltoRouter();
 $router->map('GET', '/', 'pages/home' );
 $router->map('GET', '/conseils', 'pages/conseils' );
 $router->map('GET', '/annuaire/departement-[i:departement]/[*:service]', 'pages/annuaire');
+$router->map('GET', '/annuaire/departement-[i:departement]', 'pages/annuaire');
 $router->map('GET', '/annuaire', 'pages/annuaire' );
 $router->map('GET', '/prestations', 'pages/prestations' );
 
@@ -29,7 +30,7 @@ $router->map('POST', '/logout', 'functions/logout');
 $router->map('POST', '/inscription', 'functions/inscription');
 $router->map('POST', '/verification_email', 'functions/verification_email');
 
-$router->map('GET', '/search', 'functions/', 'search');
+$router->map('GET', '/search', 'functions/search');
 /* PARTIE ADMINISTRATION */
 $router->map('GET', '/administration', '/pages/administration/revendeurs', 'administration_revendeurs');
 $router->map('GET', '/administration/activites', '/pages/administration/activites', 'administration_activites');
