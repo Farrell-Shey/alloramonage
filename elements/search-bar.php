@@ -2,7 +2,6 @@
 function getServices($conn)
 {
     $stmt = $conn->prepare('SELECT * FROM service');
-    $stmt->bindParam(':depatement_numero', $depatement_numero);
     $stmt->execute();
     return $stmt->fetchAll();
 }

@@ -7,7 +7,7 @@ function getDepartement($departement, $conn)
 
     if ($numbers === false) {
 
-        $stmt = $conn->prepare('SELECT * FROM departement WHERE departement.name LIKE %:departement%');
+        $stmt = $conn->prepare("SELECT * FROM departement WHERE departement.name LIKE CONCAT('%', :departement, '%')");
         $stmt->bindParam(':departement', $departement);
         $stmt->execute();
         return $stmt->fetch();
