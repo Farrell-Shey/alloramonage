@@ -1,7 +1,7 @@
 <?php
 
 require("../elements/header_administration.php");
-require('../functions/administration/commentaires_a_valider.php');
+require('../functions/administration/commentaires/commentaires.php');
 
 $commentaires = getCommentairesAValider();
 

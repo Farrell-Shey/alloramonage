@@ -41,6 +41,7 @@ $router->map('POST', '/ajout_activite', 'functions/administration/activites/ajou
 $router->map('POST', '/modification_activite', 'functions/administration/activites/modification_activite', 'modification_activite');
 $router->map('POST', '/suppression_activite', 'functions/administration/activites/suppression_activite', 'suppression_activite');
 $router->map('POST', '/revendeurs', 'functions/administration/revendeurs/revendeurs', 'revendeurs');
+$router->map('POST', '/action_commentaire', 'functions/administration/commentaires/commentaires', 'action_commentaire');
 
 $match = $router->match();
 
