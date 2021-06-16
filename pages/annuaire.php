@@ -23,7 +23,7 @@ function getCertif($certif)
 function getCostic($costic)
 {
     return ($costic === true) ?
-        '<img src="*" alt="">'
+        '<img class="costic" src="*" alt="">'
         :
         null;
 }
@@ -46,7 +46,7 @@ function getDepartementByNumero($depatement_numero, $conn)
 
 function getRamoneurs($departement, $conn, $service = null)
 {
-    $request = 'SELECT * FROM user INNER JOIN chalandise ON user.id = chalandise.user_id INNER JOIN departement ON chalandise.departement_id = departement.id ' .
+    $request = 'SELECT user.* FROM user INNER JOIN chalandise ON user.id = chalandise.user_id INNER JOIN departement ON chalandise.departement_id = departement.id ' .
         ($service !== null ? 'INNER JOIN prestation ON user.id = prestation.user_id INNER JOIN service ON prestation.service_id = service.id ' : null) .
         'WHERE departement.id = :departement_id ' .
         ($service !== null ? 'AND service.id = :service_id ' : null) .
@@ -60,12 +60,20 @@ function getRamoneurs($departement, $conn, $service = null)
         $stmt->bindParam(':service_id', $service);
     }
     $stmt->execute();
-    return $stmt->fetchAll();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getUserPrestations($user_id, $conn)
+{
+    $stmt = $conn->prepare('SELECT * FROM prestation INNER JOIN service ON prestation.service_id = service.id WHERE user_id = :user_id');
+    $stmt->bindParam(':user_id', $user_id);
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
 // récupération des info en bdd consernant le service recherché
 if (isset($_SESSION['match']['params']['service'])) {
-    $service = getServiceBySlug($_SESSION['match']['params']['service'], $conn);
+    $service_recherche = getServiceBySlug($_SESSION['match']['params']['service'], $conn);
 }
 
 // récupération en bdd des infos concernant le département visée par la recherche
@@ -73,14 +81,14 @@ if (isset($_SESSION['match']['params']['departement'])) {
     $departement = getDepartementByNumero($_SESSION['match']['params']['departement'], $conn);
 
     // metatilte et metadescription lors d'une recherche
-    $metatitle = 'Tout les Ramoneurs pour ' . $departement['name'] . (isset($service['name']) ? ' - ' . $service['name'] : null);
-    $metadesc = 'Tout les Ramoneurs pour ' . $departement['name'] . (isset($service['name']) ? ' - ' . $service['name'] : null);
+    $metatitle = 'Tout les Ramoneurs pour ' . $departement['name'] . (isset($service_recherche['name']) ? ' - ' . $service_recherche['name'] : null);
+    $metadesc = 'Tout les Ramoneurs pour ' . $departement['name'] . (isset($service_recherche['name']) ? ' - ' . $service_recherche['name'] : null);
 
     /*
      * On va chercher tout les ramoneurs qui correspond à la recherche en question en passant les paramêtres de recherche contenu dans $param['url']
      */
 
-    $ramoneurs = getRamoneurs($departement['id'], $conn, isset($service) ? $service['id'] : null);
+    $ramoneurs = getRamoneurs($departement['id'], $conn, isset($service_recherche) ? $service_recherche['id'] : null);
 } else { // paramêtre par défault de la page de recherche ( pas de recherche en cours )
     $metatitle = "Recherchez les Ramoneurs proche de chez vous | AlloRamonage";
 }
@@ -134,7 +142,7 @@ if (isset($_SESSION['match']['params']['departement'])) {
          * Pour chaque ramoneur on fait un affichage de carte
          */
         if (isset($ramoneurs) && $ramoneurs != null) :
-            foreach ($ramoneurs as $ramoneur) : var_dump($ramoneur);?>
+            foreach ($ramoneurs as $ramoneur) : ?>
 
                 <section class="card-result card">
 
@@ -142,7 +150,14 @@ if (isset($_SESSION['match']['params']['departement'])) {
                     <h2 class="name"><?= $ramoneur['societe'] ?></h2>
                     <p class="adresse"><?= $ramoneur['adresse'] . ' ' . $ramoneur['code_postal'] . ' ' . $ramoneur['ville'] ?></p>
                     <p class="desc"><?= $ramoneur['description'] ?></p>
-                    <img class="thumbnail" src="assets/<?= $ramoneur['thumbnail'] ?>" alt="<?= $ramoneur['societe'] ?>">
+                    <div class="thumbnail">
+                        <?php if (isset($ramoneur['thumbnail']) && $ramoneur['thumbnail'] !== '') : ?>
+                            <img src="assets/<?= $ramoneur['thumbnail'] ?>"
+                                 alt="<?= $ramoneur['societe'] ?>">
+                        <?php else : ?>
+                            <img src="/assets/img/default_img.svg" alt="y'a pas d'image" style="margin: auto">
+                        <?php endif; ?>
+                    </div>
 
                     <?= getCertif($ramoneur['certif']) ?>
                     <?= getCostic($ramoneur['costic']) ?>
@@ -150,30 +165,42 @@ if (isset($_SESSION['match']['params']['departement'])) {
                     <div class="services">
                         <span>Services :</span>
 
-                        <?php getUserPrestations($ramoneur['id']) ?>
-                        <?php foreach ($prestations as $prestation) : ?>
+                        <div class="prestations">
 
-                            <span class="prestation">
-                                <?= $prestation['name'] . ' : ' . $prestation['prix'] . ' €' ?>
+                            <?php $prestations = getUserPrestations($ramoneur['id'], $conn); ?>
+                            <?php foreach ($prestations as $prestation) : ?>
+
+                                <span class="prestation<?= (isset($service_recherche) && $prestation['id'] == $service_recherche['id']) ? ' recherche' : null ?>">
+                                <?= $prestation['name'] . ' : ' . $prestation['price'] . ' €' ?>
                             </span>
 
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
+
+                        </div>
 
                     </div>
 
-                    <a class="site_web btn btn-outline-primary" href="<?= $ramoneur['url'] ?>">
-                        site internet
-                    </a>
-                    <a class="email btn btn-outline-primary" href="<?= $ramoneur['email'] ?>">
-                        E-Mail
-                    </a>
-                    <a class="tel btn btn-outline-primary" href="tel:<?= $ramoneur['tel'] ?>">
-                        tel : <?= $ramoneur['tel'] ?>
-                    </a>
+                    <div class="lien">
+                        <?php if (isset($ramoneur['site_web']) && $ramoneur['site_web'] != '') : ?>
+                            <a class="site_web btn btn-outline-primary" href="<?= $ramoneur['site_web'] ?>">
+                                site internet
+                            </a>
+                        <?php endif; ?>
+
+                        <a class="email btn btn-outline-primary" href="<?= $ramoneur['email'] ?>">
+                            E-Mail
+                        </a>
+
+                        <?php if (isset($ramoneur['tel']) && $ramoneur['tel'] != '') : ?>
+                            <a class="tel btn btn-outline-primary" href="tel:<?= $ramoneur['tel'] ?>">
+                                tel : <?= $ramoneur['tel'] ?>
+                            </a>
+                        <?php endif; ?>
+                    </div>
 
                 </section>
 
-            <?php die(); endforeach;
+            <?php endforeach;
         /*
          * Message affiché si il n'y a pas de ramoneur pour la région séléctionnée
          * */

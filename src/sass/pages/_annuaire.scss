@@ -18,6 +18,94 @@
   border: 2px solid #352D30;
 }
 
+.card-result {
+  padding: 15px;
+  margin-bottom: 20px;
+  width: 100%;
+  min-height: 400px;
+  border-radius: 1rem;
+  box-shadow: 0 1px 2px 1px rgba(100, 67, 82, 0.25);
+  display: grid;
+  grid-template-areas:
+          'thumbnail  title       certif'
+          'thumbnail  adresse     certif'
+          'thumbnail  description costic'
+          'prestation prestation  prestation'
+          'lien       lien        lien';
+  grid-template-columns: 210px 1fr auto;
+  grid-template-rows: 50px auto auto 1fr auto;
+
+  .thumbnail {
+    grid-area: thumbnail;
+    width: 200px;
+    height: 200px;
+    background-color: #c1c1c1;
+  }
+  .name {
+    grid-area: title;
+    margin-top: auto;
+    color: #644352;
+    font-size: 2rem;
+  }
+
+  .adresse {
+    grid-area: adresse;
+    color:  #644352;
+    font-size: .8rem;
+  }
+
+  .desc {
+    grid-area: description;
+  }
+
+  .certif {
+    grid-area: certif;
+  }
+
+  .costic {
+    grid-area: costic;
+  }
+
+  .services {
+    grid-area: prestation;
+    display: flex;
+    flex-flow: wrap;
+
+    span:first-child {
+      width: 100%;
+      height: max-content;
+    }
+
+    .prestations {
+      display: flex;
+      flex-flow: wrap;
+      height: calc(100% - 24px);
+
+      .prestation {
+        margin: .5rem;
+        min-width: fit-content;
+        width: max-content;
+        height: min-content;
+        border-radius: 2rem;
+        background: #F2F2F2;
+        padding: .8rem;
+        order: 2;
+
+        &.recherche {
+          order: 1;
+          background: #ca476c;
+          color: #ffffff;
+        }
+      }
+    }
+
+  }
+
+  .lien {
+    grid-area: lien;
+  }
+}
+
 @media (min-width: 1200px) {
   .result {
     margin: 70px auto 0;
