@@ -99,8 +99,9 @@ require('../functions/administration/revendeurs/revendeurs.php');
                             </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <textarea class="form-control" id="refus_revendeur" name="refus_revendeur" rows="3" placeholder="Motif refus"></textarea>
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" id="refus_revendeur" name="refus_revendeur" rows="4" placeholder="Motif refus"></textarea>
+                        <label for="refus_revendeur">Motif refus</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input class="form-control" id="societe_revendeur" name="societe_renvendeur" placeholder="Nom société" required>
@@ -128,39 +129,29 @@ require('../functions/administration/revendeurs/revendeurs.php');
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-8">
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="adresse_revendeur" name="adresse_revendeur" placeholder="Adresse revendeur" required>
-                                <label for="adresse_revendeur">Adresse</label>
-                            </div>
-                        </div>
-                        <div class="col-4" style="padding-left: 20px">
-                            <div class="form-floating mb-3">
-                                <input class="form-control" id="pays_revendeur" name="pays_revendeur" placeholder="Pays revendeur" required>
-                                <label for="pays_revendeur">Pays</label>
-                            </div>
-                        </div>
-                    </div>
-
-
-
                 </form>
             </div>
 
             <div class="col-12 col-md-6 inscription">
                 <form class="form-connection" method="post" action="/inscription">
                     <!-- <span class="strong-title mb-3">S'INSCRIRE</span> -->
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="adresse_revendeur" name="adresse_revendeur" placeholder="Adresse revendeur" required>
+                        <label for="adresse_revendeur">Adresse</label>
+                    </div>
                     <div class="row">
                         <div class="col-6">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="telephone_revendeur" name="telephone_revendeur" placeholder="0000000000" required>
-                                <label for="telephone_revendeur">Téléphone</label>
+                                <input class="form-control" id="pays_revendeur" name="pays_revendeur" placeholder="Pays revendeur" required>
+                                <label for="pays_revendeur">Pays</label>
                             </div>
                         </div>
                         <div class="col-6" style="padding-left: 20px">
                             <div class="form-floating mb-3">
-                                
+                                <div class="form-floating mb-3">
+                                    <input class="form-control" id="telephone_revendeur" name="telephone_revendeur" placeholder="0000000000" required>
+                                    <label for="telephone_revendeur">Téléphone</label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -186,23 +177,26 @@ require('../functions/administration/revendeurs/revendeurs.php');
                             </div>
                         </div>
                         <div class="col-6" style="padding-left: 20px">
-                            <label for="certificat_revendeur">Certificat</label>
-                            <select class="form-select" id="certificat_revendeur" name="certificat_revendeur">
-                                <option id="oui" value="1">Oui</option>
-                                <option id="non" value="0">Non</option>
-                                <option id="nonprecise" value="2">Non précisé</option>
-                            </select>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="certificat_revendeur" name="certificat_revendeur">
+                                <label class="form-check-label" for="certificat_revendeur">Certificat</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="costic_revendeur" name="costic_revendeur">
+                                <label class="form-check-label" for="costic_revendeur">Costic</label>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <textarea class="form-control" id="description_revendeur" name="description_revendeur" rows="3" placeholder="Description revendeur"></textarea>
+                    <div class="form-floating mb-3">
+                        <textarea class="form-control" id="description_revendeur" name="description_revendeur" rows="4" placeholder="Description revendeur"></textarea>
+                        <label for="description_revendeur">Description</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input type="text" class="form-control" id="activites_revendeurs" name="activites_revendeurs" placeholder="Activités revendeur" required>
                         <label for="activites_revendeurs">Activités</label>
                     </div>
 
-                    <button name="inscription" id="inscription" class="btn btn-outline-primary" type="submit">ENREGISTRER LES MODIFICATIONS</button>
+                    <button name="inscription" id="inscription" class="btn btn-outline-primary sauvegarde_modifications" type="submit">ENREGISTRER LES MODIFICATIONS</button>
 
                 </form>
             </div>

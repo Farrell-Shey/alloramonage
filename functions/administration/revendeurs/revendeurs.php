@@ -26,3 +26,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['id_revendeur'])) {
     $revendeur = $GLOBALS['conn']->query('SELECT * FROM user WHERE id = "'.$_POST['id_revendeur'].'"')->fetchAll();
     echo json_encode($revendeur);
 }
+
+if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['modification'])) {
+    /*$revendeur = $GLOBALS['conn']->query('SELECT * FROM user WHERE id = "'.$_POST['id_revendeur'].'"')->fetchAll();
+    echo json_encode($revendeur);*/
+    echo "lol";
+}

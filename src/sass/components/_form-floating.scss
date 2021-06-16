@@ -66,6 +66,10 @@
   padding: 1em 0.75em;
 }
 
+.form-floating textarea {
+  min-height: 5.70rem;
+}
+
 .form-floating > label {
   position: absolute;
   top: 0;
