@@ -44,12 +44,45 @@ function getDepartementByNumero($depatement_numero, $conn)
     return $stmt->fetch();
 }
 
-if (isset($_SESSION['match']['params']['departement'])){
-    $departement = getDepartementByNumero($_SESSION['match']['params']['departement'], $conn);
+function getRamoneurs($departement, $conn, $service = null)
+{
+    $request = 'SELECT * FROM user INNER JOIN chalandise ON user.id = chalandise.user_id INNER JOIN departement ON chalandise.departement_id = departement.id ' .
+        ($service !== null ? 'INNER JOIN prestation ON user.id = prestation.user_id INNER JOIN service ON prestation.service_id = service.id ' : null) .
+        'WHERE departement.id = :departement_id ' .
+        ($service !== null ? 'AND service.id = :service_id ' : null) .
+        'ORDER BY chalandise.priorite DESC';
+
+    $stmt = $conn->prepare($request);
+    if (isset($departement)) {
+        $stmt->bindParam(':departement_id', $departement);
+    }
+    if ($service !== null) {
+        $stmt->bindParam(':service_id', $service);
+    }
+    $stmt->execute();
+    return $stmt->fetchAll();
 }
 
+// récupération des info en bdd consernant le service recherché
 if (isset($_SESSION['match']['params']['service'])) {
     $service = getServiceBySlug($_SESSION['match']['params']['service'], $conn);
+}
+
+// récupération en bdd des infos concernant le département visée par la recherche
+if (isset($_SESSION['match']['params']['departement'])) {
+    $departement = getDepartementByNumero($_SESSION['match']['params']['departement'], $conn);
+
+    // metatilte et metadescription lors d'une recherche
+    $metatitle = 'Tout les Ramoneurs pour ' . $departement['name'] . (isset($service['name']) ? ' - ' . $service['name'] : null);
+    $metadesc = 'Tout les Ramoneurs pour ' . $departement['name'] . (isset($service['name']) ? ' - ' . $service['name'] : null);
+
+    /*
+     * On va chercher tout les ramoneurs qui correspond à la recherche en question en passant les paramêtres de recherche contenu dans $param['url']
+     */
+
+    $ramoneurs = getRamoneurs($departement['id'], $conn, isset($service) ? $service['id'] : null);
+} else { // paramêtre par défault de la page de recherche ( pas de recherche en cours )
+    $metatitle = "Recherchez les Ramoneurs proche de chez vous | AlloRamonage";
 }
 
 
@@ -83,57 +116,13 @@ if (isset($_SESSION['match']['params']['service'])) {
  *        ...
  *    ];
  */
-
-
-/*
- * désactivé tant que la bdd n'est pas à jour
- *
-function getRamoneurs($data, $conn)
-{
-    $request = 'SELECT * FROM users ' .
-                (isset($data['departement']) ? 'INNER JOIN chalandise ON users.id = chalandise.user_id INNER JOIN departements ON chalandise.departement_id = departement.id ' : null) .
-                (isset($data['service']) ? 'INNER JOIN prestations ON users.id = prestations.user_id INNER JOIN services ON prestations.service_id = services.id ' : null) .
-                'WHERE ' . (isset($data['departement']) ? 'departements.name LIKE %:departement_name% ' : null) .
-                ( (isset($data['departement']) && isset($data['service'])) ) ? 'AND ' : null .
-                (isset($data['service']) ? 'services.id = :service_id' : null);
-    $stmt = $conn->prepare($request);
-    if (isset($data['departement']))
-    {
-        $stmt->bindParam(':departement_name', $data['departement']);
-    }
-    if (isset($data['service']))
-    {
-        $stmt->bindParam(':service_id', $data['service']);
-    }
-    $stmt->execute();
-    return $stmt->fetchAll();
-}
-*/
-
-/*
- * On va chercher tout les ramoneurs qui correspond à la recherche en question en passant les paramêtres de recherche contenu dans $param['url']
- */
-/*
-if (isset($_GET['departement']) || isset($_GET['service'])) {
-    $data = $_GET;
-    $ramoneurs = getRamoneurs($data, $conn);
-    var_dump($ramoneurs);
-    die();
-}
-*/
-
-if (isset($_SESSION['match']['params']['departement'])) { // lorsqu'une recherche est en cours
-    $metatitle = 'Tout les Ramoneurs pour '.$departement['name']. (isset($service['name']) ? ' - '.$service['name'] : null);
-} else { // metatitle par défaut
-    $metatitle = "Recherchez les Ramoneurs proche de chez vous | AlloRamonage";
-}
 ?>
 
 
 <?php require("../elements/header.php"); ?>
 
     <section class="search-annuaire">
-        <h1>L’annuaire des ramoneurs <?= isset($departement) ? 'pour '.$departement['name'] : 'de vos régions' ?></h1>
+        <h1>L’annuaire des ramoneurs <?= isset($departement) ? 'pour ' . $departement['name'] : 'de vos régions' ?></h1>
         <?php require("../elements/search-bar.php"); ?>
     </section>
 
@@ -145,14 +134,14 @@ if (isset($_SESSION['match']['params']['departement'])) { // lorsqu'une recherch
          * Pour chaque ramoneur on fait un affichage de carte
          */
         if (isset($ramoneurs) && $ramoneurs != null) :
-            foreach ($ramoneurs as $ramoneur) : ?>
+            foreach ($ramoneurs as $ramoneur) : var_dump($ramoneur);?>
 
                 <section class="card-result card">
 
 
                     <h2 class="name"><?= $ramoneur['societe'] ?></h2>
                     <p class="adresse"><?= $ramoneur['adresse'] . ' ' . $ramoneur['code_postal'] . ' ' . $ramoneur['ville'] ?></p>
-                    <p class="desc"><?= $ramoneur['desc'] ?></p>
+                    <p class="desc"><?= $ramoneur['description'] ?></p>
                     <img class="thumbnail" src="assets/<?= $ramoneur['thumbnail'] ?>" alt="<?= $ramoneur['societe'] ?>">
 
                     <?= getCertif($ramoneur['certif']) ?>
@@ -165,8 +154,8 @@ if (isset($_SESSION['match']['params']['departement'])) { // lorsqu'une recherch
                         <?php foreach ($prestations as $prestation) : ?>
 
                             <span class="prestation">
-                <?= $prestation['name'] . ' : ' . $prestation['prix'] . ' €' ?>
-            </span>
+                                <?= $prestation['name'] . ' : ' . $prestation['prix'] . ' €' ?>
+                            </span>
 
                         <?php endforeach; ?>
 
@@ -184,14 +173,16 @@ if (isset($_SESSION['match']['params']['departement'])) { // lorsqu'une recherch
 
                 </section>
 
-            <?php endforeach;
-            /*
-             * Message affiché si il n'y a pas de ramoneur pour la région séléctionnée
-             * */
+            <?php die(); endforeach;
+        /*
+         * Message affiché si il n'y a pas de ramoneur pour la région séléctionnée
+         * */
         elseif (isset($departement)): ?>
             <div class="no-result">
-                <div class="text"><?= ucfirst($departement['name']) ?> n'a pas encore de Ramoneur enregistré <?= isset($_SESSION['match']['param']['service']) ? 'pour la réalisation de '.$_SESSION['match']['param']['service'] : null ?></div>
-                <a class="btn btn-outline-primary btn-lg" onclick="document.getElementById('registration').classList.toggle('d-none');">
+                <div class="text"><?= ucfirst($departement['name']) ?> n'a pas encore de Ramoneur
+                    enregistré <?= isset($_SESSION['match']['param']['service']) ? 'pour la réalisation de ' . $_SESSION['match']['param']['service'] : null ?></div>
+                <a class="btn btn-outline-primary btn-lg"
+                   onclick="document.getElementById('registration').classList.toggle('d-none');">
                     Professionel dans ce département ?
                 </a>
             </div>
