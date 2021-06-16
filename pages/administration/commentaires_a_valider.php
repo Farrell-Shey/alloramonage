@@ -5,47 +5,37 @@ require('../functions/administration/commentaires_a_valider.php');
 
 $commentaires = getCommentairesAValider();
 
-if ($commentaires == null) {
-    echo "Aucun commentaires à valider.";
+if(!$commentaires) {
+    echo "Il n'y a aucun commentaire à traiter pour le moment.";
 }
-
-$tableau = '<table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Nom</th>
-                        <th scope="col">Prénom</th>
-                        <th scope="col">Commentaire</th>
-                        <th scope="col">Date</th>
-                        <th scope="col">Utilisateur</th>
-                    </tr>
-                </thead>
-                <tbody>';
-
-foreach ($commentaires as $commentaire) {
-    print_r($commentaire);
-}
-
 ?>
 
 
-<tr>
-    <th scope="row">1</th>
-    <td>Mark</td>
-    <td>Otto</td>
-    <td>@mdo</td>
-</tr>
-<tr>
-    <th scope="row">2</th>
-    <td>Jacob</td>
-    <td>Thornton</td>
-    <td>@fat</td>
-</tr>
-<tr>
-    <th scope="row">3</th>
-    <td>Larry</td>
-    <td>the Bird</td>
-    <td>@twitter</td>
-</tr>
-</tbody>
-</table>
+<?php if ($commentaires) : ?>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Nom et prénom</th>
+                <th scope="col">Commentaire</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody id="revendeurs">
+            <?php
+            $tableau = null;
+            foreach ($commentaires as $commentaire) {
+                $tableau .= '<tr>';
+                $tableau .= '<th scope="row">' . $commentaire['id'] . '</th>';
+                $tableau .= '<th>' . $commentaire['nom'] . " " . $commentaire['prenom'] . '</th>';
+                $tableau .= '<th>' . $commentaire['commentaire'] . '</th>';
+                $tableau .= '<th><button type="button" class="btn btn-primary validation_commentaire" id="' . $commentaire['id'] . '">Valider</button><span> </span><button type="button" class="btn btn-primary suppression_commentaire" id="' . $commentaire['id'] . '">Supprimer</button></th>';
+                $tableau .= '</tr>';
+            }
+            echo $tableau;
+            ?>
+        </tbody>
+    </table>
+
+<?php endif; ?>

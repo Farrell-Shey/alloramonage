@@ -14,7 +14,7 @@ require('../functions/administration/revendeurs/revendeurs.php');
 <button type="button" class="btn btn-primary changement_revendeurs" value="2">En attente</button>
 <button type="button" class="btn btn-primary changement_revendeurs" value="9">Supprimé</button>
 <br><br>
-<div class="testtqt"></div>
+
 <table class="table">
     <thead>
         <tr>
@@ -40,8 +40,6 @@ require('../functions/administration/revendeurs/revendeurs.php');
         ?>
     </tbody>
 </table>
-
-<input class="form-control poney" id="societe_renvendeur" name="societe_renveneur" placeholder="Nom société" >
 
 <div id="registration" class="filtre-over d-none" onclick="this.classList.toggle('d-none');">
     <aside class="modal-registration" onclick="document.getElementById('registration').classList.toggle('d-none');">
@@ -105,8 +103,12 @@ require('../functions/administration/revendeurs/revendeurs.php');
                         <textarea class="form-control" id="refus_revendeur" name="refus_revendeur" rows="3" placeholder="Motif refus"></textarea>
                     </div>
                     <div class="form-floating mb-3">
-                        <input class="form-control poney" id="societe_renvendeur" name="societe_renvendeur" placeholder="Nom société" required>
+                        <input class="form-control" id="societe_revendeur" name="societe_renvendeur" placeholder="Nom société" required>
                         <label for="societe_renvendeur">Société</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control" id="siren_revendeur" name="siren_revendeur" placeholder="Siren" required>
+                        <label for="siren_revendeur">Siren</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input class="form-control" id="contact_revendeur" name="contact_revendeur" placeholder="Nom revendeur" required>
@@ -158,8 +160,7 @@ require('../functions/administration/revendeurs/revendeurs.php');
                         </div>
                         <div class="col-6" style="padding-left: 20px">
                             <div class="form-floating mb-3">
-                                <input class="form-control" id="fax_revendeur" name="fax_revendeur" placeholder="*******" required>
-                                <label for="fax_revendeur">Fax</label>
+                                
                             </div>
                         </div>
                     </div>
