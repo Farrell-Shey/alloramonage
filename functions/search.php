@@ -48,9 +48,9 @@ $data = $_GET;
 $departement = getDepartement($data['departement'], $conn);
 if ($departement == false) {
     // renvoie de l'erreur
-    $_SESSION['error']['departement'] = $data['departement'];
-    $_SESSION['error']['service'] = $data['service'];
-    header('location: /');
+    $_SESSION['error']['search']['departement'] = $data['departement'];
+    $_SESSION['error']['search']['service'] = $data['service'];
+    header('location: '. $_SESSION['REDIRECT_URI']);
 } else {
 
     /*

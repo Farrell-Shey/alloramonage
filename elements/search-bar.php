@@ -14,7 +14,6 @@ function getDepartementById ($depatement_id, $conn){
 }
 
 $services = getServices($conn);
-
 /*
  * Gestion des pré-remplissages des champs
  * */
@@ -25,9 +24,9 @@ if (isset($_SESSION['match']['params']['departement'])){ // la requète ne renvo
     if (isset($_SESSION['match']['params']['service'])){
         $placehold['service'] = $_SESSION['match']['params']['service'];
     }
-} elseif (isset($_SESSION['error'])) {
-    $placehold['departement'] = $_SESSION['error']['departement'];
-    $placehold['service'] = $_SESSION['error']['service'];
+} elseif (isset($_SESSION['error']['search'])) {
+    $placehold['departement'] = $_SESSION['error']['search']['departement'];
+    $placehold['service'] = $_SESSION['error']['search']['service'];
     unset($_SESSION['error']);
 
 }
@@ -38,7 +37,7 @@ if (isset($_SESSION['match']['params']['departement'])){ // la requète ne renvo
 <form action="/search" method="get" class="search-bar">
     <div class="form-floating">
         <input type="text" class="form-control" id="departement" name="departement" placeholder="*******" required="" <?= isset($placehold['departement']) ? ' value="'.$placehold['departement'].'"' : null ?>>
-        <label for="departement">Départment, Code postal</label>
+        <label for="departement">Département, Code postal</label>
     </div>
     <div class="form-floating">
         <select class="form-select" id="service" name="service">

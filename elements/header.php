@@ -1,5 +1,6 @@
 <?php
-
+// gère la redirection vers la dernière page de front
+$_SESSION['REDIRECT_URI'] = $_SERVER['REQUEST_URI'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -84,7 +85,7 @@
     </div>
 </header>
 
-<div id="registration" class="filtre-over d-none" onclick="this.classList.toggle('d-none');">
+<div id="registration" class="filtre-over<?= isset($_SESSION['connect']['error']) ? null : ' d-none' ?>" onclick="this.classList.toggle('d-none');">
     <aside class="modal-registration" onclick="document.getElementById('registration').classList.toggle('d-none');">
         <div class="row">
 
@@ -94,11 +95,11 @@
                     <span class="strong-title mb-3">ME CONNECTER</span>
 
                     <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="mail_login" name="mail_login" placeholder="name@example.com" required>
+                        <input type="email" class="form-control<?= ( isset($_SESSION['connect']['error']) && $_SESSION['connect']['error'] === 'email' ) ? ' is-invalid' : null ?>" id="mail_login" name="mail_login" placeholder="name@example.com" <?= isset($_SESSION['connect']['email']) ? "value='".$_SESSION['connect']['email']."'" : null ?> required>
                         <label for="mail_login">Adresse E-Mail</label>
                     </div>
                     <div class="form-floating">
-                        <input type="password" class="form-control" id="password_login" name="password_login" placeholder="*******" required>
+                        <input type="password" class="form-control<?= ( isset($_SESSION['connect']['error']) && $_SESSION['connect']['error'] === 'password' ) ? ' is-invalid' : null ?>" id="password_login" name="password_login" placeholder="*******" required>
                         <label for="password_login">Mot de passe</label>
                     </div>
                     <a href="#" class="oubli">Mot de passe oublié ?</a>
@@ -107,7 +108,11 @@
                 </form>
             </div>
 
-            <?php // INSCRIPTION ?>
+            <?php
+            // plus besoin des erreur
+            unset($_SESSION['connect'])
+            // INSCRIPTION
+            ?>
             <div class="col-12 col-md-6 inscription">
                 <form class="form-connection" method="post" action="/inscription">
                     <span class="strong-title mb-3">S'INSCRIRE</span>
@@ -157,8 +162,8 @@
                         </div>
 
                         <div class="form-floating">
-                            <input type="tel" pattern="[0]{1}[0-9]{9}" class="form-control" id="telephone" name="telephone" placeholder="0000000000" required>
-                            <label for="telephone">N° de téléphone (10 chiffres)</label>
+                            <input type="tel" class="form-control" id="telephone" name="telephone" placeholder="0000000000" required>
+                            <label for="telephone">N° de téléphone</label>
                         </div>
 
                     </div>

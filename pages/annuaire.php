@@ -81,8 +81,8 @@ if (isset($_SESSION['match']['params']['departement'])) {
     $departement = getDepartementByNumero($_SESSION['match']['params']['departement'], $conn);
 
     // metatilte et metadescription lors d'une recherche
-    $metatitle = 'Tout les Ramoneurs pour ' . $departement['name'] . (isset($service_recherche['name']) ? ' - ' . $service_recherche['name'] : null);
-    $metadesc = 'Tout les Ramoneurs pour ' . $departement['name'] . (isset($service_recherche['name']) ? ' - ' . $service_recherche['name'] : null);
+    $metatitle = 'Tous les Ramoneurs pour ' . $departement['name'] . (isset($service_recherche['name']) ? ' - ' . $service_recherche['name'] : null);
+    $metadesc = 'Tous les Ramoneurs pour ' . $departement['name'] . (isset($service_recherche['name']) ? ' - ' . $service_recherche['name'] : null);
 
     /*
      * On va chercher tout les ramoneurs qui correspond à la recherche en question en passant les paramêtres de recherche contenu dans $param['url']
