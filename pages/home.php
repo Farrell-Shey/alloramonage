@@ -2,8 +2,6 @@
 
 $metatitle = 'L\'annuaire des Ramoneurs de France AlloRamonage';
 
-//$services = getServices();
-
 require ("../elements/header.php");
 
 ?>

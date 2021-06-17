@@ -16,7 +16,7 @@ if (isset($_POST['login'])) {
             $validPassword = verify_passwords($password, $user['password']);
             if($validPassword){
                 $_SESSION['utilisateur'] = $email;
-                header('Location: /conseils');
+                header('Location: /');
             } else {
                 $_SESSION['error'] = 'password';
             }
@@ -24,6 +24,7 @@ if (isset($_POST['login'])) {
     }
 }
 
+// Vérifie que le mot de passe entré est bien le même que le mot de passe stocké dans la bdd
 function verify_passwords($given_password, $result_password) {
     if(hash("sha256", $given_password) == $result_password){
         return true;

@@ -4,6 +4,8 @@ $metatitle = "Conseils Allo Ramonage";
 
 require ("../elements/header.php");
 
+
+/* --- Sert de page de déconnexion pour le moment --- */
 if (isset($_SESSION['utilisateur'])){
     echo $_SESSION['utilisateur'];
 } else {

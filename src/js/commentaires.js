@@ -1,10 +1,10 @@
-//validation_commentaire
-//suppression_commentaire
-
+// Voir le fichier activites.js pour le fonctionnement de l'ajax
 $(document).ready(function (e) {
     $('.validation_commentaire').click(function () {
         var id = $(this).attr('id')
         $.ajax({
+            // URL qui correspond à la page /functions/administration/commentaires.php
+            // Appel ajax qui va permettre de valider un commentaire
             url: "/action_commentaire",
             type: "POST",
             async: false,
@@ -23,6 +23,7 @@ $(document).ready(function (e) {
     $('.suppression_commentaire').click(function () {
         var id = $(this).attr('id')
         $.ajax({
+            // Appel ajax qui va permettre de supprimer un commentaire
             url: "/action_commentaire",
             type: "POST",
             async: false,

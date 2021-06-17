@@ -10,7 +10,6 @@ if(!$commentaires) {
 }
 ?>
 
-
 <?php if ($commentaires) : ?>
 
     <table class="table">
