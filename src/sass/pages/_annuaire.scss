@@ -33,7 +33,7 @@
           'prestation prestation  prestation'
           'lien       lien        lien';
   grid-template-columns: 210px 1fr auto;
-  grid-template-rows: 50px auto auto 1fr auto;
+  grid-template-rows: 50px auto 1fr 1fr auto;
 
   .thumbnail {
     grid-area: thumbnail;
@@ -49,12 +49,15 @@
   }
 
   .adresse {
+    margin: 0;
+    font-weight: 600;
     grid-area: adresse;
     color:  #644352;
-    font-size: .8rem;
+    font-size: .9rem;
   }
 
   .desc {
+    margin: 10px 0 0 0;
     grid-area: description;
   }
 
@@ -79,16 +82,18 @@
     .prestations {
       display: flex;
       flex-flow: wrap;
+      align-content: baseline;
       height: calc(100% - 24px);
 
       .prestation {
-        margin: .5rem;
+        margin: .25rem .5rem;
+        padding: .3rem .8rem;
         min-width: fit-content;
         width: max-content;
         height: min-content;
+        font-size: .8rem;
         border-radius: 2rem;
         background: #F2F2F2;
-        padding: .8rem;
         order: 2;
 
         &.recherche {
@@ -103,6 +108,13 @@
 
   .lien {
     grid-area: lien;
+
+    .btn {
+      border-radius: 2rem;
+      border: 2px solid #ca476c;
+      font-size: 1rem;
+      font-weight: 700;
+    }
   }
 }
 

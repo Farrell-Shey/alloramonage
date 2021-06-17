@@ -32,6 +32,6 @@ if (isset($_POST['inscription'])) {
 
     // On utilise l'email pour identifier l'utilisateur connecté
     $_SESSION['utilisateur'] = $email;
-    header('Location: /');
+    header('Location: ' . $_SESSION['REDIRECT_URI']);
 
 } 

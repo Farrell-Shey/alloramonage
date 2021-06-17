@@ -1,6 +1,7 @@
 <?php
 
-$metatitle = 'L\'annuaire des Ramoneurs de France AlloRamonage';
+$metatitle = 'Ramonage: l\'annuaire des ramoneurs AlloRamonage.fr';
+$metadesc = 'Toute les infos pour le ramonage de votre installation de chauffage au bois (cheminée - poele a bois- chaudiere) et les adresses de ramoneurs près de chez vous avec les avis de leurs clients. Pour un ramonage en toute sécutité.';
 
 require ("../elements/header.php");
 

@@ -81,8 +81,11 @@ if (isset($_SESSION['match']['params']['departement'])) {
     $departement = getDepartementByNumero($_SESSION['match']['params']['departement'], $conn);
 
     // metatilte et metadescription lors d'une recherche
-    $metatitle = 'Tous les Ramoneurs pour ' . $departement['name'] . (isset($service_recherche['name']) ? ' - ' . $service_recherche['name'] : null);
-    $metadesc = 'Tous les Ramoneurs pour ' . $departement['name'] . (isset($service_recherche['name']) ? ' - ' . $service_recherche['name'] : null);
+
+    $metatitle = 'Les Ramoneurs pour un ramonage dans ' . $departement['name'] .' '. $departement['numero'] . (isset($service_recherche['name']) ? ' - ' . $service_recherche['name'] : null);
+
+    // NANTES, LA CHAPELLE SUR ERDRE, vallet, THOUARE SUR LOIRE, ST NAZAIRE, Saint Nazaire, Pornic, Saint Herblain.
+    $metadesc = 'Trouvez les ramoneurs et societes de ramonage pres de chez vous partout en France. Ramoneur dans le département ' . $departement['numero'];
 
     /*
      * On va chercher tout les ramoneurs qui correspond à la recherche en question en passant les paramêtres de recherche contenu dans $param['url']
@@ -183,17 +186,17 @@ if (isset($_SESSION['match']['params']['departement'])) {
                     <div class="lien">
                         <?php if (isset($ramoneur['site_web']) && $ramoneur['site_web'] != '') : ?>
                             <a class="site_web btn btn-outline-primary" href="<?= $ramoneur['site_web'] ?>">
-                                site internet
+                                Site Internet
                             </a>
                         <?php endif; ?>
 
                         <a class="email btn btn-outline-primary" href="<?= $ramoneur['email'] ?>">
-                            E-Mail
+                            E-mail
                         </a>
 
                         <?php if (isset($ramoneur['tel']) && $ramoneur['tel'] != '') : ?>
                             <a class="tel btn btn-outline-primary" href="tel:<?= $ramoneur['tel'] ?>">
-                                tel : <?= $ramoneur['tel'] ?>
+                                Tél. : <?= $ramoneur['tel'] ?>
                             </a>
                         <?php endif; ?>
                     </div>

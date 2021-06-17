@@ -9,8 +9,17 @@ $_SESSION['REDIRECT_URI'] = $_SERVER['REQUEST_URI'];
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="/assets/css/app.css" type="text/css">
+    <meta name=Author content="CanoP">
+    <meta name=Country content="FRANCE, FR">
+    <meta name=Language content="fr, fre">
+    <?=
+    // pour intégrer des meta en fonction de la page sur laquelle on est
+    isset($hook_meta) ? $hook_meta : null
+    ?>
+    <meta name="description" content="<?= ( isset($metadesc) ? $metadesc : "Pas de metadescription pour le moment mais c\'est imminent" ) ?>">
     <title><?= ( isset($metatitle) ? $metatitle : 'Pas de metatitle' ) ?></title>
+    <link rel="stylesheet" href="/assets/css/app.css" type="text/css">
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
     <script src="/assets/js/app.js"></script>
 
 </head>
