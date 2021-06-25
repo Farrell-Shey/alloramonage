@@ -1,0 +1,103 @@
+.bloc_partenaire {
+  display: flex;
+  align-items: center;
+  background: #eeeeee;
+  padding: 15px 50px;
+  flex-wrap: wrap;
+}
+
+.bloc_partenaire span {
+  margin: 0 auto 20px;
+  color: #ca476c;
+  font-weight: bold;
+  font-size: 1.5rem;
+  min-width: fit-content;
+  text-align: center;
+}
+
+.partenaires {
+  display: flex;
+  flex-flow: wrap;
+  margin: auto;
+}
+
+.partenaire {
+  margin:auto;
+}
+
+.bloc_redirect {
+  background: #523842;
+  text-align: center;
+  padding: 70px 20px;
+
+  & > * {
+    color: #fff;
+  }
+
+  .text-primary {
+    color: #FF83A6;
+  }
+
+  form {
+    margin: 50px auto 0;
+    width: max-content;
+    display: flex;
+    border: 2px solid #ffffff;
+    border-radius: 1rem;
+
+    .form-select, label, .btn {
+      background: transparent;
+      color: #fff;
+      border: 0;
+
+      &:focus {
+        box-shadow: unset;
+      }
+    }
+  }
+}
+
+.mention {
+  background: #322A2D;
+  display: flex;
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    place-content: center;
+
+    div {
+      color: #ca476c;
+      display: none;
+    }
+  }
+
+  span {
+    color: #fff;
+    margin-right: 10px;
+
+  }
+
+  .lien {
+    color: #ca476c;
+
+  }
+}
+
+@media (min-width: 1200px) {
+  #morettidesign, #turbo-fonte, #termatech, #spartherm, #poujoulat {
+    width: 20%;
+  }
+  .bloc_partenaire {
+    flex-wrap: nowrap;
+  }
+
+  .bloc_partenaire span {
+    margin: unset;
+    text-align: left;
+  }
+
+  .mention .container {
+    flex-wrap: nowrap;
+  }
+}

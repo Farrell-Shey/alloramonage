@@ -33,7 +33,7 @@ function getServiceBySlug($service_slug, $conn)
     $stmt = $conn->prepare('SELECT * FROM service WHERE slug = :service_slug');
     $stmt->bindParam(':service_slug', $service_slug);
     $stmt->execute();
-    return $stmt->fetch();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
 function getDepartementByNumero($depatement_numero, $conn)
@@ -41,7 +41,7 @@ function getDepartementByNumero($depatement_numero, $conn)
     $stmt = $conn->prepare('SELECT * FROM departement WHERE numero = :depatement_numero');
     $stmt->bindParam(':depatement_numero', $depatement_numero);
     $stmt->execute();
-    return $stmt->fetch();
+    return $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
 function getRamoneurs($departement, $conn, $service = null)
@@ -158,7 +158,7 @@ if (isset($_SESSION['match']['params']['departement'])) {
                             <img src="assets/<?= $ramoneur['thumbnail'] ?>"
                                  alt="<?= $ramoneur['societe'] ?>">
                         <?php else : ?>
-                            <img src="/assets/img/default_img.svg" alt="y'a pas d'image" style="margin: auto">
+                            <img src="/assets/img/AR-defaut.gif" alt="y'a pas d'image" style="margin: auto">
                         <?php endif; ?>
                     </div>
 

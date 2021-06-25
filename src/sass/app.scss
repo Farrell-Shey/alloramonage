@@ -1,3 +1,4 @@
+@import '~owl.carousel';
 
 // import de toutes les constantes
 @import "variables";
@@ -11,12 +12,14 @@
 @import "components/form-floating";
 @import "components/menu-burger";
 @import "components/search-bar";
+@import "components/carousel";
 
 
 // import de tous les layouts présent sur le site
 // @import "layouts/_____";
 @import "layouts/bootstrap-flex";
 @import "layouts/header";
+@import "layouts/footer";
 @import "layouts/registration";
 
 

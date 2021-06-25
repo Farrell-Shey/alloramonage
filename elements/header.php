@@ -20,7 +20,6 @@ $_SESSION['REDIRECT_URI'] = $_SERVER['REQUEST_URI'];
     <title><?= ( isset($metatitle) ? $metatitle : 'Pas de metatitle' ) ?></title>
     <link rel="stylesheet" href="/assets/css/app.css" type="text/css">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
-    <script src="/assets/js/app.js"></script>
 
 </head>
 <body>
@@ -37,7 +36,7 @@ $_SESSION['REDIRECT_URI'] = $_SERVER['REQUEST_URI'];
                 <path d="M32.9857 26C32.9857 24 35.9857 20.5 37.4857 19V27.5C41.9319 29.5 43.9857 34 44.4857 37C43.5108 38.4623 39.2096 43.251 39.4573 47.1967C39.5488 45.0745 45.0574 40.8805 46.4857 38.5C45.819 36.1667 44.5857 30.8 44.9857 28C46.1857 22.8 50.819 20.5 52.9857 20C51.819 22 49.2857 26.7 48.4857 29.5C48.4857 30.5 51.4857 34.5 53.4857 37C55.4857 39.5 51.4857 48 50.9857 51.5C56.9857 45 55.9857 40 55.4857 37C52.9857 32 53.4857 32 53.4857 29.5C55.8857 25.5 58.4857 24.1667 59.4857 24V34C60.4857 35 62.6857 37.7 63.4857 40.5C64.6857 56.9 53.9857 64.3333 48.4857 66V61C46.9857 62.6667 43.1857 66 39.9857 66C36.7857 66 33.9857 60 32.9857 57L31.4857 62.5C29.4857 60 21.4857 51.5 29.4857 44C38.4857 38.5 36.9857 37.5 36.9857 36.5C38.4857 35.5 32.9857 28.5 32.9857 26Z" fill="white"></path>
                 <path d="M26.5 31.5L28.5 23L30 31.5L31 34L30.5 36.5L23 43.5V37.5L26.5 31.5Z" fill="white"></path>
             </svg>
-            AlloRamonage
+            AlloRamonage.fr
         </a>
 
         <?php // BURGER MOBILE ?>
@@ -54,20 +53,20 @@ $_SESSION['REDIRECT_URI'] = $_SERVER['REQUEST_URI'];
             <ul>
 
                 <li class="nav-item">
-                    <a href="/conseils" class="nav-link">
-                        Conseils
+                    <a href="/ramonage-cheminee-poele" class="nav-link">
+                        Ramonage Cheminée & Poêle
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="/annuaire" class="nav-link">
+                    <a href="/annuaire_ramoneur" class="nav-link">
                         Annuaires des ramoneurs
                     </a>
                 </li>
 
                 <li class="nav-item">
-                    <a href="/prestations" class="nav-link active">
-                        Prestations
+                    <a href="/entretien-poele-granules" class="nav-link active">
+                        Entretien poêle granulés
                     </a>
                 </li>
             </ul>
@@ -76,6 +75,14 @@ $_SESSION['REDIRECT_URI'] = $_SERVER['REQUEST_URI'];
         <?php // NAV DESKTOP LEFT ?>
         <div id="profile" class="nav-desktop d-none d-sm-block">
             <div class="mr-2">
+
+                <?php if (isset($_SESSION['utilisateur'])) : ?>
+
+                <form method="post" action="/logout">
+                    <input type="submit" value="Déconnexion" name="but_logout">
+                </form>
+
+                <?php else: ?>
 
                 <a class="btn btn-outline-dark btn-lg d-none d-sm-block" onclick="document.getElementById('registration').classList.toggle('d-none');">
                     Espace Pro
@@ -86,6 +93,9 @@ $_SESSION['REDIRECT_URI'] = $_SERVER['REQUEST_URI'];
                     </svg>
                     <span>Professionnel ?<br>Connectez-vous</span>
                 </a>
+
+                <?php endif; ?>
+
             </div>
 
         </div>
@@ -93,6 +103,8 @@ $_SESSION['REDIRECT_URI'] = $_SERVER['REQUEST_URI'];
 
     </div>
 </header>
+
+<?php if (!isset($_SESSION['utilisateur'])) : ?>
 
 <div id="registration" class="filtre-over<?= isset($_SESSION['connect']['error']) ? null : ' d-none' ?>" onclick="this.classList.toggle('d-none');">
     <aside class="modal-registration" onclick="document.getElementById('registration').classList.toggle('d-none');">
@@ -182,5 +194,7 @@ $_SESSION['REDIRECT_URI'] = $_SERVER['REQUEST_URI'];
         </div>
     </aside>
 </div>
+
+<?php endif; ?>
 
 <main>

@@ -17,11 +17,11 @@ $router = new AltoRouter();
 // route vers les pages HTML du site - target = 'pages/....'
 // renvoie vers les fichiers qui se trouvent dans 'pages/'
 $router->map('GET', '/', 'pages/home' );
-$router->map('GET', '/conseils', 'pages/conseils' );
-$router->map('GET', '/annuaire/departement-[i:departement]/[*:service]', 'pages/annuaire');
-$router->map('GET', '/annuaire/departement-[i:departement]', 'pages/annuaire');
-$router->map('GET', '/annuaire', 'pages/annuaire' );
-$router->map('GET', '/prestations', 'pages/prestations' );
+$router->map('GET', '/ramonage-cheminee-poele', 'pages/conseils' );
+$router->map('GET', '/annuaire_ramoneur/departement-[i:departement]/[*:service]', 'pages/annuaire');
+$router->map('GET', '/annuaire_ramoneur/departement-[i:departement]', 'pages/annuaire');
+$router->map('GET', '/annuaire_ramoneur', 'pages/annuaire' );
+$router->map('GET', '/entretien-poele-granules', 'pages/prestations' );
 
 //route vers l'api rest du site - target = 'functions/....'
 // renvoie vers les fichiers qui se trouvent dans 'functions/'

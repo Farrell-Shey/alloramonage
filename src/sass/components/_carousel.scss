@@ -1,0 +1,42 @@
+.owl-carousel {
+  max-width: calc(100vw - 16px);
+  z-index: 0;
+
+  article {
+    padding: 2rem;
+    margin: 20px auto;
+    width: 90%;
+    border-radius: 1rem;
+    box-shadow: 0 3px 5px 0 rgba(#000, .25);
+    background-image: repeating-linear-gradient(45deg,#ffffff,#f7f7f7 6px,#f7f7f7 0,#ffffff 12px);
+    min-height: 450px;
+
+    .title{
+      font-size: 1.8rem;
+      font-weight: bold;
+      text-align: center;
+
+      &:before{
+        content: url("/assets/img/quote-left.svg");
+        width: 20px;
+        display: block;
+      }
+      &:after{
+        content: url("/assets/img/quote-right.svg");
+        margin-left: auto;
+        width: 20px;
+        display: block;
+      }
+    }
+
+  }
+}
+
+@media (min-width: 1200px) {
+  .owl-carousel {
+
+    article {
+      width: 50%;
+    }
+  }
+}

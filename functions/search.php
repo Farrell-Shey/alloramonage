@@ -94,8 +94,8 @@ else {
     /*
      * Créer l'url pour l'annuaire
      * typage de l'url :
-     * /annuaire/departement-[i:departement.numero]/[*:service.slug]
+     * /annuaire_ramoneur/departement-[i:departement.numero]/[*:service.slug]
      */
-    $location = 'annuaire/departement-' . $departement['numero'] . ((isset($service) && $service != false) ? '/' . $service['slug'] : null);
+    $location = 'annuaire_ramoneur/departement-' . $departement['numero'] . ((isset($service) && $service != false) ? '/' . $service['slug'] : null);
     header('location: ' . $location);
 }

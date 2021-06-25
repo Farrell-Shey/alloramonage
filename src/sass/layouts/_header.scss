@@ -16,7 +16,7 @@
   order: 1;
   font-weight: bold;
   color: #CA476C;
-  font-size: 1.5rem;
+  font-size: 2rem;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
@@ -94,7 +94,7 @@
   fill: #CA476C;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1500px) {
 
   .header-desktop {
     padding: 5px 0 0 0;
@@ -102,6 +102,10 @@
 
   .header-desktop .logo_allo svg {
     width: 70px;
+  }
+
+  .header-desktop ul {
+    padding: 0;
   }
 
   .header-desktop .nav-item {
@@ -152,7 +156,7 @@
 
   .nav-item .nav-link {
     display: block;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: normal;
     text-transform: none;
     width: max-content;
