@@ -23,6 +23,9 @@ $router->map('GET', '/annuaire_ramoneur/departement-[i:departement]', 'pages/ann
 $router->map('GET', '/annuaire_ramoneur', 'pages/annuaire' );
 $router->map('GET', '/entretien-poele-granules', 'pages/prestations' );
 
+$router->map('GET', '/upload', 'pages/images' );
+$router->map('POST', '/upload_image', 'functions/upload' );
+
 //route vers l'api rest du site - target = 'functions/....'
 // renvoie vers les fichiers qui se trouvent dans 'functions/'
 $router->map('POST', '/login', 'functions/login');

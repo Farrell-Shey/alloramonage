@@ -20,7 +20,11 @@ require('../functions/administration/revendeurs/revendeurs.php');
         <tr>
             <th scope="col">ID</th>
             <th scope="col">Société</th>
-            <th scope="col">Département</th>
+            <th scope="col">Email</th>
+            <th scope="col">Téléphone</th>
+            <th scope="col">Code Postal</th>
+            <th scope="col">Date de création</th>
+            <th scope="col">Statut</th>
             <th scope="col"></th>
         </tr>
     </thead>
@@ -32,7 +36,11 @@ require('../functions/administration/revendeurs/revendeurs.php');
             $tableau .= '<tr>';
             $tableau .= '<th scope="row">' . $revendeur['id'] . '</th>';
             $tableau .= '<th>' . $revendeur['societe'] . '</th>';
+            $tableau .= '<th>' . $revendeur['email'] . '</th>';
+            $tableau .= '<th>' . $revendeur['tel'] . '</th>';
             $tableau .= '<th>' . $revendeur['code_postal'] . '</th>';
+            $tableau .= '<th>' . $revendeur['created_at'] . '</th>';
+            $tableau .= '<th>' . $revendeur['statut'] . '</th>';
             $tableau .= '<th><button type="button" class="btn btn-primary modification_revendeurs" id="' . $revendeur['id'] . '" onclick="document.getElementById(\'registration\').classList.toggle(\'d-none\');">Modifier</button></th>';
             $tableau .= '</tr>';
         }

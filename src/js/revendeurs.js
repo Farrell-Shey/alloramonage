@@ -140,7 +140,7 @@ $(document).ready(function (e) {
                 description: description
             },
             success: function () {
-                
+                window.location.reload()
             },
             error: function (e) {
                 alert("Service indisponible pour le moment.")

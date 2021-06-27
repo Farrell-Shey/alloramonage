@@ -1,22 +1,16 @@
 $(document).ready(function (e) {
   $("#inscription").click(function (e) {
-    //e.preventDefault();
     if (!verification_email()) {
       e.preventDefault();
       $("#mail_inscription").addClass("is-invalid");
-      // $("#mail_inscription").after("<span class='invalid-feedback'>Ce Compte n\'existe pas</span>");
     } else {
       $("#mail_inscription").removeClass("is-invalid");
     }
     if ($("#password_inscription").val() != $("#confirm_password_inscription").val()) {
       $("#confirm_password_inscription").addClass("is-invalid");
-      /*$("#confirm_password_inscription").after(
-        "<span id='email_erreur' class='text-danger'>Les mots de passe ne correspondent pas.</span>"
-      );*/
       e.preventDefault();
     } else {
       $("#confirm_password_inscription").removeClass("is-invalid");
-      //$("#confirm_password_inscription").after("<span id='email_erreur' class='text-danger'>Les mots de passe ne correspondent pas.</span>").remove();
     }
   });
 });
@@ -39,9 +33,6 @@ function verification_email() {
           error = true;
         }
         else {
-          /*$("#mail_inscription").after(
-            "<span id='email_erreur' class='text-danger'>" + response + "</span>"
-          );*/
           error = false;
         }
       },

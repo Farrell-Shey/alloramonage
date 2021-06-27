@@ -4,17 +4,17 @@
 
 // Récupérer tout les revendeurs
 function getRevendeurs(){
-    return $GLOBALS['conn']->query('SELECT id, societe, code_postal FROM user ORDER BY `id` ASC')->fetchAll();
+    return $GLOBALS['conn']->query('SELECT * FROM user ORDER BY `id` ASC')->fetchAll();
 }
 
 // Permet de filtrer les revendeurs selon le statut choisi
 if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['statut'])){
     // Le statut payant n'existe pas en tant que tel, j'utilise donc le nombre 10 qui n'est utilisé par aucun statut et qui permet de faire une requête différente
     if($_POST['statut'] == 10) {
-        $revendeurs = $GLOBALS['conn']->query('SELECT id, societe, code_postal FROM user WHERE payant = 1 ORDER BY `id` ASC')->fetchAll();
+        $revendeurs = $GLOBALS['conn']->query('SELECT * FROM user WHERE payant = 1 ORDER BY `id` ASC')->fetchAll();
     // Récupérer les revendeurs selon le statut donné en paramètre
     } else {
-        $revendeurs = $GLOBALS['conn']->query('SELECT id, societe, code_postal FROM user WHERE statut = '.$_POST['statut'].' ORDER BY `id` ASC')->fetchAll();
+        $revendeurs = $GLOBALS['conn']->query('SELECT * FROM user WHERE statut = '.$_POST['statut'].' ORDER BY `id` ASC')->fetchAll();
     }
     $tableau = null;
     // Création du tableau contenant tout les revendeurs si un filtre a été sélectionné
@@ -22,7 +22,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['statut'])){
         $tableau .= '<tr>';
         $tableau .= '<th scope="row">' . $revendeur['id'] . '</th>';
         $tableau .= '<th>' . $revendeur['societe'] . '</th>';
+        $tableau .= '<th>' . $revendeur['email'] . '</th>';
+        $tableau .= '<th>' . $revendeur['tel'] . '</th>';
         $tableau .= '<th>' . $revendeur['code_postal'] . '</th>';
+        $tableau .= '<th>' . $revendeur['created_at'] . '</th>';
+        $tableau .= '<th>' . $revendeur['statut'] . '</th>';
         $tableau .= '<th><button type="button" class="btn btn-primary modification_revendeurs" id="' . $revendeur['id'] . '" onclick="document.getElementById(\'registration\').classList.toggle(\'d-none\');">Modifier</button></th>';
         $tableau .= '</tr>';
     }
