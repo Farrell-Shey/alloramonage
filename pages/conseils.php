@@ -3,7 +3,7 @@
 $metatitle = "Ramonage de Cheminée & de Poêle & Ramoneurs";
 $metadesc = "Des conseils pour selectionner une société de ramonage et un ramoneur pour votre appareil de chauffage au bois : cheminée, poele à bois ou poêle à granules.";
 
-require ("../elements/header.php");
+require("../elements/header.php");
 
 /*--- Sert de page de déconnexion pour le moment ---
 
@@ -31,28 +31,27 @@ if (isset($_SESSION['utilisateur'])) {
     <h2>Pourquoi et comment ramoner ma cheminée ou mon poêle ?</h2>
     <p>Le ramonage a 2 objectifs :</p>
     <ul>
-        <li>vérifier que l'installation et notamment les conduits sont fonctionnels et libres : C'est utile pour votre sécurité.</li>
-        <li>vérifier que les conduits sont propres : C'est utile pour la performance de l'installation (et votre sécurité dixit les feu de cheminée...).</li>
+        <li>vérifier que l'installation et notamment les conduits sont fonctionnels et libres : C'est utile pour votre
+            sécurité.
+        </li>
+        <li>vérifier que les conduits sont propres : C'est utile pour la performance de l'installation (et votre
+            sécurité dixit les feu de cheminée...).
+        </li>
     </ul>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/8-xRPX5Qugc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/8-xRPX5Qugc" title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
 </section>
 
-<section>
-    <h2>Fréquence de ramonage : Quand ramoner un poêle , un insert, une chaudière ?</h2>
-    <p>Les conduits doivent être ramonés régulièrement:
-        Gaz et fioul 1 fois par an , 2 ramonages par an pour les conduits bois, c'est une obligation légale.</p>
+<section
+        style="background: #eee; transform: rotate(1deg);padding: 30px; width: 110vw; margin: 100px -5px 100px -5px; min-height: 400px">
+    <div style="transform: rotate(-1deg)">
+        <h2>Fréquence de ramonage : Quand ramoner un poêle , un insert, une chaudière ?</h2>
+        <p>Les conduits doivent être ramonés régulièrement:
+            Gaz et fioul 1 fois par an , 2 ramonages par an pour les conduits bois, c'est une obligation légale.</p>
+    </div>
 </section>
-
-
-
-
-
-
-
-
-
-
-
 
 
 Comment savoir s'il faut ramoner plus souvent une cheminée ?
@@ -86,7 +85,9 @@ Rajouter :
 
 Exemple de ramonage mécanique par le bas en video :
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/XTkWLBSGvpI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/XTkWLBSGvpI" title="YouTube video player"
+        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
 Opérations pour un bon ramonage bois
 1- Vérification de la vacuité du conduit
 
@@ -137,6 +138,6 @@ Plus votre combustible sera de qualité, plus vous aurez de calories utiles pour
 Plus d'info et d'adresses sur Bois de Chauffage .Net
 
 <?php
-require ("../elements/footer.php");
+require("../elements/footer.php");
 
 ?>

@@ -21,6 +21,12 @@ $_SESSION['REDIRECT_URI'] = $_SERVER['REQUEST_URI'];
     <link rel="stylesheet" href="/assets/css/app.css" type="text/css">
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 
+    <?php
+    /**
+     GESTION DES COOKIES AVEC TARTEAUCITRON
+     */ ?>
+    <script type="text/javascript" src="/assets/tarteaucitron/tarteaucitron.js"></script>
+
 </head>
 <body>
 <header id="header">
